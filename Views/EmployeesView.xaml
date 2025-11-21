@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="QuanLyChamCong.Views.EmployeesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuanLyChamCong.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#FFF5F7FA">
+
+    <Grid Background="#F5F6FA" Margin="0,0,-56,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="21,28,85,10">
+
+            <Border Grid.Row="0" Background="#FFFFFF" Padding="20" Margin="0,0,0,2">
+                <StackPanel>
+                    <TextBlock Text="QUẢN LÝ THÔNG TIN NHÂN VIÊN" 
+                           FontSize="24" FontWeight="Bold" Foreground="#1A237E"/>
+                    <TextBlock Text="Xem và quản lý thông tin nhân viên" 
+                           FontSize="14" Foreground="#757575" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+            
+            <DockPanel Margin="0,0,0,10">
+                <Border Background="White" CornerRadius="10" Padding="10" Width="224" Height="56"
+                        DockPanel.Dock="Left" BorderBrush="#E0E0E0" BorderThickness="1">
+                    <DockPanel>
+                        <TextBlock Text="🔍" FontSize="16" Margin="0,0,10,10" Width="38" Height="37" RenderTransformOrigin="0.87,0.852"/>
+                        <TextBox x:Name="SearchTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent"
+                                 ToolTip="Search employees..." Width="359"/>
+                    </DockPanel>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                    <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
+                        <Button Content="Sửa thông tin" Padding="10,6" Background="Transparent" BorderThickness="0"
+                                ToolTip="Sửa nhân viên đang chọn"
+                                Command="{Binding EditEmployeeCommand}"
+                                CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}" Click="Button_Click_1"/>
+                    </Border>
+                    <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
+                        <Button Content="Xoá nhân viên" Padding="10,6" Background="Transparent" BorderThickness="0"
+                                ToolTip="Xóa nhân viên đang chọn"
+                                Command="{Binding DeleteEmployeeCommand}"
+                                CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}" Click="ExportToExcel_Click"/>
+                    </Border>
+                    <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
+                        <Button Content="⬇ Xuất trang Excel" Padding="10,6" Background="Transparent" BorderThickness="0"
+                                ToolTip="Xuất sang trang excel" Click="ExportToExcel_Click"/>
+                    </Border>
+                    <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
+                        <Button Content="⬇ Xuất sang PDF" Padding="10,6" Background="Transparent" BorderThickness="0"
+                                ToolTip="Xuất sang PDF" Click="ExportToPDF_Click"/>
+                    </Border>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+
+        <Border Grid.Row="1" 
+                Background="White"
+                CornerRadius="12"
+                BorderBrush="#E3E3E3"
+                BorderThickness="1"
+                Padding="15"
+                Margin="21,0,85,26">
+            <DataGrid ItemsSource="{Binding FilteredEmployees}"
+                      x:Name="dgEmployees"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      RowHeight="38"
+                      ColumnHeaderHeight="35"
+                      GridLinesVisibility="None"
+                      Background="White"
+                      BorderThickness="0"
+                      SelectionMode="Single"
+                      CanUserSortColumns="True"
+                      CanUserResizeRows="False"
+                      CanUserResizeColumns="False"
+                      IsReadOnly="True"
+                      
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="DataGrid_SelectionChanged">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+
+                        <Setter Property="Background" Value="#F8F8F8"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="Foreground" Value="#333"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nhân viên ID" Binding="{Binding EmployeeID}" Width="*"/>
+                    <DataGridTextColumn Header="Tên" Binding="{Binding Name}" Width="1.5*"/>
+                    <DataGridTextColumn Header="Chức vụ" Binding="{Binding Department}" Width="1.5*"/>
+                    <DataGridTextColumn Header="Số điện thoại" Binding="{Binding PhoneNumbers}" Width="*"/>
+                    <DataGridTextColumn Header="Loạt ca" Binding="{Binding ShiftType}" Width="1.5*"/>
+                    <DataGridTextColumn Header="Số ca" Binding="{Binding TotalShiftsToday}" Width="*"/>
+                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

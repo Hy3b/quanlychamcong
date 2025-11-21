@@ -1,0 +1,175 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using QuanLyChamCong.Models;
+namespace QuanLyChamCong.Services
+{
+    public class EmployeesService
+    {
+        public async Task<bool> SuaNhanVien(EmployeesModel employee)
+        {
+            string query = @"UPDATE nhan_vien 
+                         SET ho_ten = @Name, 
+                             chuc_vu = @Department, 
+                             so_dien_thoai = @Phone 
+                         WHERE id = @Id";
+            try
+            {
+                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString))
+                {
+                    await conn.OpenAsync();
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", employee.Name);
+                        cmd.Parameters.AddWithValue("@Department", employee.Department);
+                        cmd.Parameters.AddWithValue("@Phone", employee.PhoneNumbers);
+                        cmd.Parameters.AddWithValue("@Id", employee .EmployeeID);
+                        int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                        return rowsAffected > 0;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                throw new Exception("Lỗi cập nhật: " + ex.Message);
+            }
+
+        }
+        public async Task<bool> XoaNhanVien(int ID)
+        {
+            string query = @"
+                            UPDATE tai_khoan tk
+                            JOIN nhan_vien nv ON tk.id = nv.tai_khoan_id
+                            SET tk.trang_thai = 'inactive'
+                            WHERE nv.id = @id";
+            try
+            {
+                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString))
+                {
+                    await conn.OpenAsync();
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", ID);
+                        int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // 4. Xử lý lỗi Khóa ngoại (Foreign Key Constraint)
+                // Mã lỗi 1451: Cannot delete or update a parent row: a foreign key constraint fails
+                if (ex.Number == 1451)
+                {
+                    // Ném lỗi này ra để ViewModel bắt được và hiện thông báo tiếng Việt dễ hiểu
+                    throw new Exception("Không thể xóa nhân viên này vì họ đã có dữ liệu chấm công hoặc bảng lương. Hãy xóa dữ liệu liên quan trước!");
+                }
+
+                // Các lỗi khác (mất mạng, sai query...)
+                throw;
+            }
+        }
+        public async Task<List<EmployeesModel>> GetAll(DateTime date)
+        {
+            string connect = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
+            var attendanceList = new List<EmployeesModel>();
+            string sql = @"
+                        SELECT 
+                        nv.id AS ma_nhan_vien,
+                        nv.ho_ten,
+                        nv.chuc_vu,
+                        nv.so_dien_thoai,
+
+                        IFNULL(MAX(cl.loai_ca), 'Hiện không trong ca') AS loai_ca,
+
+                        (
+                            SELECT COUNT(*) 
+                            FROM phan_cong_ca pcc2 
+                            JOIN ca_lam cl2 ON pcc2.ca_id = cl2.id 
+                            WHERE pcc2.nhan_vien_id = nv.id 
+                              AND cl2.ngay_lam = CURDATE()
+                        ) AS tong_so_ca_hom_nay,
+
+                        MAX(IFNULL(cc.trang_thai, '')) AS trang_thai
+
+                    FROM nhan_vien AS nv
+
+                    -- 🔥 Chỉ lấy nhân viên có tài khoản ACTIVE
+                    INNER JOIN tai_khoan tk ON tk.id = nv.tai_khoan_id
+                        AND tk.trang_thai = 'active'
+
+                    LEFT JOIN phan_cong_ca AS pcc 
+                           ON nv.id = pcc.nhan_vien_id
+
+                    LEFT JOIN ca_lam AS cl 
+                           ON pcc.ca_id = cl.id
+                          AND cl.ngay_lam = CURDATE()
+                          AND '12:00:00' BETWEEN cl.gio_bat_dau AND cl.gio_ket_thuc
+
+                    LEFT JOIN cham_cong AS cc 
+                           ON cc.nhan_vien_id = nv.id 
+                          AND cc.ca_id = cl.id
+
+                    GROUP BY 
+                        nv.id, nv.ho_ten, nv.chuc_vu;
+            ";
+            using (var conn = new MySqlConnection(connect))
+            {
+                await conn.OpenAsync();
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ngay_lam", date.Date);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var model = new EmployeesModel();
+
+                            // ========== Map dữ liệu ==========
+                            model.EmployeeID = reader.GetInt32("ma_nhan_vien");
+
+                            model.Name = reader.GetString(reader.GetOrdinal("ho_ten"));
+
+                            model.Department = reader.GetString(reader.GetOrdinal("chuc_vu"));
+
+                            // PhoneNumbers có thể null → dùng IsDBNull
+                            int phoneOrdinal = reader.GetOrdinal("so_dien_thoai");
+                            model.PhoneNumbers = reader.IsDBNull(phoneOrdinal)
+                                ? null
+                                : reader.GetString(phoneOrdinal);
+
+                            // ShiftType (loai_ca) trả về string
+                            int shiftOrdinal = reader.GetOrdinal("loai_ca");
+                            model.ShiftType = reader.IsDBNull(shiftOrdinal)
+                                ? null
+                                : reader.GetString(shiftOrdinal);
+
+                            // Total shifts today → số nguyên
+                            int totalOrdinal = reader.GetOrdinal("tong_so_ca_hom_nay");
+                            model.TotalShiftsToday = reader.IsDBNull(totalOrdinal)
+                                ? 0
+                                : reader.GetInt32(totalOrdinal);
+
+                            // Status (trang_thai), có thể rỗng hoặc null
+                            int statusOrdinal = reader.GetOrdinal("trang_thai");
+                            model.Status = reader.IsDBNull(statusOrdinal)
+                                ? null
+                                : reader.GetString(statusOrdinal);
+
+                            attendanceList.Add(model);
+                        }
+                    }
+                }
+            }
+            return attendanceList;
+        }
+    }
+}
