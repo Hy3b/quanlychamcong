@@ -23,6 +23,7 @@ namespace QuanLyChamCong.Views
         public AttendanceHistoryView()
         {
             InitializeComponent();
+
         }
     }
 }
