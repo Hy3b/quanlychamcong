@@ -1,0 +1,141 @@
+﻿<Window x:Class="QuanLyChamCong.Views.AttendanceHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Chi tiết lịch sử chấm công"
+        Height="700" Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F3F4F6">
+
+    <Window.Resources>
+        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+
+        <Style x:Key="LabelTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="ValueTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" CornerRadius="10" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="10" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="Thông tin nhân viên" Style="{StaticResource SectionHeaderStyle}"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Nhân viên ID" Style="{StaticResource LabelTextStyle}"/>
+                        <TextBlock Text="{Binding NhanVienId}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Tên nhân viên" Style="{StaticResource LabelTextStyle}"/>
+                        <TextBlock Text="{Binding HoTen}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Chức vụ" Style="{StaticResource LabelTextStyle}"/>
+                        <TextBlock Text="{Binding ChucVu}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="10" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Lịch sử chấm công" Style="{StaticResource SectionHeaderStyle}"/>
+
+                <DataGrid Grid.Row="1" 
+                          ItemsSource="{Binding AttendanceHistoryList}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal"
+                          HorizontalGridLinesBrush="#E5E7EB"
+                          Background="White"
+                          BorderThickness="0"
+                          RowHeight="50"
+                          ColumnHeaderHeight="40">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="#4B5563"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontSize" Value="13"/>
+                            <Setter Property="Padding" Value="10,0"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="#374151"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Padding" Value="10,0"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                                            <ContentPresenter VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ngày" Binding="{Binding Ngay, StringFormat='MMM dd, yyyy'}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Giờ chấm vào" Binding="{Binding GioVao}" Width="*"/>
+                        <DataGridTextColumn Header="Giờ chấm ra" Binding="{Binding GioRa}" Width="*"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

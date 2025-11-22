@@ -8,6 +8,5 @@ namespace QuanLyChamCong.ViewModels
 {
     class AttendanceHistoryModel
     {
-        public 
     }
 }

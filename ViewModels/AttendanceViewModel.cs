@@ -10,7 +10,6 @@ namespace QuanLyChamCong.ViewModels
 {
     internal partial class AttendanceViewModel : ObservableObject
     {
-        private readonly 
         private readonly AttendanceService _service;
         public void RefreshCommand()
         {
