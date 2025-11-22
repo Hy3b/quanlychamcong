@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 namespace QuanLyChamCong.ViewModels
 {
-    internal class AttendanceViewModel : ObservableObject
+    internal partial class AttendanceViewModel : ObservableObject
     {
+        private readonly 
         private readonly AttendanceService _service;
         public void RefreshCommand()
         {
             LoadData();
         }
-        public int SelectedDate { get; set; }
+        [ObservableProperty]
+        private DateTime selectedDate = DateTime.Now;
         public List<AttendanceModel> DailyAttendance { get; set; }
         public AttendanceViewModel()
         {

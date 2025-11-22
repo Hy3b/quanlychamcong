@@ -10,15 +10,17 @@ namespace QuanLyChamCong.ViewModels
         private readonly DashboardViewModel _dashboardViewModel;
         private readonly EmployeesViewModel _employeesViewModel;
         private readonly AttendanceViewModel _attendanceViewModel;
+        private readonly AttendanceHistoryModel _attendanceHistoryViewModel;
         // 2. Một property để lưu ViewModel *hiện tại* đang được hiển thị
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
-        private object _currentViewModel;
+        public object _currentViewModel;
 
         // 3. Các "Lệnh" (Command) mà các nút trong View có thể gọi
         public IRelayCommand ShowDashboardCommand { get; }
         public IRelayCommand ShowEmployeesCommand { get; }
         public IRelayCommand ShowAttendaceCommand { get; }
+        public IRelayCommand ShowAttendanceHistoryCommand { get; }
         // ... Thêm các Command khác cho Reports, Settings...
 
         public MainViewModel()
@@ -27,10 +29,12 @@ namespace QuanLyChamCong.ViewModels
             _dashboardViewModel = new DashboardViewModel();
             _employeesViewModel = new EmployeesViewModel();
             _attendanceViewModel = new AttendanceViewModel();
+            _attendanceHistoryViewModel = new AttendanceHistoryModel();
             // Khởi tạo các Lệnh
             ShowDashboardCommand = new RelayCommand(ExecuteShowDashboard);
             ShowEmployeesCommand = new RelayCommand(ExecuteShowEmployees);
             ShowAttendaceCommand = new RelayCommand(ExecuteShowAttendace);
+            ShowAttendanceHistoryCommand = new RelayCommand(ExecuteShowAttendanceHistory);
             // ...
 
             // 4. Thiết lập trang mặc định khi mở ứng dụng
@@ -50,6 +54,10 @@ namespace QuanLyChamCong.ViewModels
         private void ExecuteShowAttendace()
         {
             CurrentViewModel = _attendanceViewModel;
+        }
+        private void ExecuteShowAttendanceHistory()
+        {
+            CurrentViewModel = _attendanceHistoryViewModel;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace QuanLyChamCong.Views
 {
     /// <summary>
     /// Interaction logic for AttendanceView.xaml
-    /// </summary>
+    /// </summary> 
     public partial class AttendanceView : UserControl
     {
         public AttendanceView()

@@ -67,11 +67,11 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="20 20 20 30">
-                <TextBlock Text="Business Manager" 
+                <TextBlock Text="Quản lý nhân viên" 
                            Foreground="White" 
                            FontSize="20" 
                            FontWeight="Bold"/>
-                <TextBlock Text="Admin Dashboard" 
+                <TextBlock Text="Trang quản lý" 
                            Foreground="{StaticResource NavForeground}" 
                            FontSize="12"/>
             </StackPanel>
@@ -83,7 +83,7 @@
                             Command="{Binding ShowDashboardCommand}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE80F;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Dashboard" VerticalAlignment="Center"/>
+                        <TextBlock Text="Trang chủ" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
 
@@ -106,28 +106,22 @@
                 <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE9F9;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Reports" VerticalAlignment="Center"/>
+                        <TextBlock Text="Lương thưởng" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE9D9;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Analytics" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </RadioButton>
 
                 <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Calendar" VerticalAlignment="Center"/>
+                        <TextBlock Text="Lịch làm" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
 
                 <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Settings" VerticalAlignment="Center"/>
+                        <TextBlock Text="Cài đặt" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -148,7 +142,7 @@
                         <TextBlock Text="John Doe" 
                                    Foreground="White" 
                                    FontWeight="SemiBold"/>
-                        <TextBlock Text="Administrator" 
+                        <TextBlock Text="Quản trị viên" 
                                    Foreground="{StaticResource NavForeground}" 
                                    FontSize="10"/>
                     </StackPanel>

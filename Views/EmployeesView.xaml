@@ -46,7 +46,7 @@
                         <Button Content="Xoá nhân viên" Padding="10,6" Background="Transparent" BorderThickness="0"
                                 ToolTip="Xóa nhân viên đang chọn"
                                 Command="{Binding DeleteEmployeeCommand}"
-                                CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}" Click="ExportToExcel_Click"/>
+                                CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}"/>
                     </Border>
                     <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
                         <Button Content="⬇ Xuất trang Excel" Padding="10,6" Background="Transparent" BorderThickness="0"

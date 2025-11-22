@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\admin\source\repos\QuanLyChamCong\App.xaml
-51427485174
+61922415150
 
-221545761968
+251710390393
 216814356491
-Views\AttendanceView.xaml;Views\DashboardView.xaml;Views\EditEmployeeWindow.xaml;Views\EmployeesView.xaml;Views\MainWindow.xaml;
+Views\AttendanceHistoryView.xaml;Views\AttendanceView.xaml;Views\DashboardView.xaml;Views\EditEmployeeWindow.xaml;Views\EmployeesView.xaml;Views\MainWindow.xaml;
 
-True
+False
 

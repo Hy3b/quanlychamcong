@@ -30,7 +30,7 @@
                            FontSize="14" Foreground="#757575" Margin="0,5,0,0"/>
             </StackPanel>
         </Border>
-
+        
         <Border Grid.Row="1" Background="#FFFFFF" Margin="15,15,15,0" CornerRadius="8" Padding="15">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -41,18 +41,24 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Ngày xem:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="SemiBold"/>
-                    <DatePicker SelectedDate="{Binding SelectedDate}" Width="150" VerticalContentAlignment="Center"/>
-                </StackPanel>
+                <DatePicker SelectedDate="{Binding SelectedDate}" 
+                            Width="120" 
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"     
+                            Background="Transparent" 
+                            SelectedDateFormat="Short"/>
 
                 <TextBox Grid.Column="3" Width="250" Height="35" 
                          Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
                          VerticalContentAlignment="Center" Padding="5,0"
                          Margin="10,0"/>
 
+                
+
+                            
                 <TextBlock Grid.Column="3" Text="Tìm theo tên hoặc ID..." 
                            IsHitTestVisible="False" VerticalAlignment="Center" Margin="18,0,0,0" Foreground="#CCC">
+
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -67,15 +73,31 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <Button Grid.Column="4" Content="Làm mới" Command="{Binding RefreshCommand}"
-                        Background="#2196F3" Foreground="White" FontWeight="Bold"
-                        Width="100" Height="35" BorderThickness="0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <StackPanel Grid.Column="4" Orientation="Horizontal">
+
+                    <Button Content="Xem lịch sử" 
+                            Command="{Binding ViewHistoryCommand}"
+                            CommandParameter="{Binding ElementName=dgChamCong, Path=SelectedItem}"
+                            Background="#FF9800" Foreground="White" FontWeight="Bold"
+                            Width="120" Height="35" BorderThickness="0" Margin="0,0,10,0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </Button.Resources>
+
+                    </Button>
+
+                    <Button Content="Làm mới" Command="{Binding RefreshCommand}"
+                            Background="#2196F3" Foreground="White" FontWeight="Bold"
+                            Width="100" Height="35" BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -88,6 +110,7 @@
         Margin="15">
 
             <DataGrid ItemsSource="{Binding DailyAttendance}"
+              x:Name="dgChamCong"
               AutoGenerateColumns="False"
               HeadersVisibility="Column"
               RowHeight="38"
@@ -122,6 +145,7 @@
                     <DataGridTextColumn Header="Giờ vào" Binding="{Binding GioVao}" Width="*"/>
                     <DataGridTextColumn Header="Giờ ra" Binding="{Binding GioRa}" Width="*"/>
                     <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="*"/>
+                    
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

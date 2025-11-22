@@ -60,5 +60,15 @@ namespace QuanLyChamCong.Views
             this.DialogResult = false; // Đóng cửa sổ, không làm gì cả
             this.Close();
         }
+
+        private void TextBox_TextChanged()
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
