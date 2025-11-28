@@ -26,7 +26,7 @@
             </Border>
             
             <DockPanel Margin="0,0,0,10">
-                <Border Background="White" CornerRadius="10" Padding="10" Width="224" Height="56"
+                <Border Background="White" CornerRadius="10" Padding="10" Width="177" Height="56"
                         DockPanel.Dock="Left" BorderBrush="#E0E0E0" BorderThickness="1">
                     <DockPanel>
                         <TextBlock Text="🔍" FontSize="16" Margin="0,0,10,10" Width="38" Height="37" RenderTransformOrigin="0.87,0.852"/>
@@ -37,11 +37,18 @@
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
                     <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
+                        <Button Content="Thêm nhân viên" Padding="10,6" Background="Transparent" BorderThickness="0"
+                                ToolTip="Sửa nhân viên đang chọn"
+                                Command="{Binding EditEmployeeCommand}"
+                                CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}" Click="Button_Click_1" Width="105"/>
+                    </Border>
+                    <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
                         <Button Content="Sửa thông tin" Padding="10,6" Background="Transparent" BorderThickness="0"
                                 ToolTip="Sửa nhân viên đang chọn"
                                 Command="{Binding EditEmployeeCommand}"
                                 CommandParameter="{Binding ElementName=dgEmployees, Path=SelectedItem}" Click="Button_Click_1"/>
                     </Border>
+                    
                     <Border CornerRadius="6" Background="White" BorderBrush="#D0D0D0" BorderThickness="1" Margin="0,0,8,0">
                         <Button Content="Xoá nhân viên" Padding="10,6" Background="Transparent" BorderThickness="0"
                                 ToolTip="Xóa nhân viên đang chọn"
