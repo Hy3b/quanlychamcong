@@ -7,3 +7,4 @@
 /.gitignore
 /obj/Debug/net8.0-windows/Views/AttendanceView.g.cs
 /obj/Debug/net8.0-windows/Views/AttendanceView.g.i.cs
+/obj/Debug/net8.0-windows/Views/AttendanceView.g.cs
