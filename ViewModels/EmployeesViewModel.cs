@@ -90,7 +90,7 @@ namespace QuanLyChamCong.ViewModels
             if (employee == null) return;
 
             // Hỏi xác nhận
-            var result = MessageBox.Show($"Bạn có chắc muốn xóa nhân viên {employee.Name}?",
+            var result = MessageBox.Show($"Bạn có chắc muốn xóa nhân viên {employee.EmployeeID} có tên là {employee.Name} ?",
                                          "Xác nhận xóa",
                                          MessageBoxButton.YesNo,
                                          MessageBoxImage.Warning);
@@ -125,7 +125,17 @@ namespace QuanLyChamCong.ViewModels
 
             // Tạo một cửa sổ mới (Form Sửa) và truyền nhân viên vào
             // (Giả sử bạn đã tạo file EditEmployeeWindow.xaml)
-            var editWindow = new EditEmployeeWindow(employee);
+            EmployeesModel employeeClone = new EmployeesModel
+            {
+                EmployeeID = employee.EmployeeID,
+                Name = employee.Name,
+                Department = employee.Department,
+                PhoneNumbers = employee.PhoneNumbers,
+                ShiftType = employee.ShiftType,
+                TotalShiftsToday = employee.TotalShiftsToday,
+                Status = employee.Status
+            };
+            var editWindow = new EditEmployeeWindow(employeeClone);
 
             bool? result = editWindow.ShowDialog(); // Hiện dạng Dialog (chặn cửa sổ chính)
 
@@ -137,7 +147,23 @@ namespace QuanLyChamCong.ViewModels
                 
             }
         }
-
+        [RelayCommand]
+        private void AddEmployee()
+        {
+            // Tạo một cửa sổ mới (Form Thêm) 
+            var addWindow = new AddEmployeeView();
+            bool? result = addWindow.ShowDialog(); // Hiện dạng Dialog (chặn cửa sổ chính)
+            if (result == true)
+            {
+                // Nếu người dùng bấm Lưu bên kia, ta load lại dữ liệu
+                LoadDataAsync();
+            }
+        }
+        [RelayCommand]
+        private void Refresh()
+        {
+            LoadDataAsync();
+        }
         /// <summary>
         // Hàm khởi tạo
         /// </summary>

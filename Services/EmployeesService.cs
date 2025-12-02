@@ -94,7 +94,7 @@ namespace QuanLyChamCong.Services
                             FROM phan_cong_ca pcc2 
                             JOIN ca_lam cl2 ON pcc2.ca_id = cl2.id 
                             WHERE pcc2.nhan_vien_id = nv.id 
-                              AND cl2.ngay_lam = CURDATE()
+                              AND cl2.ngay_lam = @ngay_lam
                         ) AS tong_so_ca_hom_nay,
 
                         MAX(IFNULL(cc.trang_thai, '')) AS trang_thai
@@ -110,8 +110,7 @@ namespace QuanLyChamCong.Services
 
                     LEFT JOIN ca_lam AS cl 
                            ON pcc.ca_id = cl.id
-                          AND cl.ngay_lam = CURDATE()
-                          AND '12:00:00' BETWEEN cl.gio_bat_dau AND cl.gio_ket_thuc
+                          AND cl.ngay_lam = @ngay_lam
 
                     LEFT JOIN cham_cong AS cc 
                            ON cc.nhan_vien_id = nv.id 
@@ -170,6 +169,103 @@ namespace QuanLyChamCong.Services
                 }
             }
             return attendanceList;
+        }
+        public static string RemoveVietnameseAccents(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+
+            string[] arr1 = new string[] { 
+            "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+            "đ",
+            "é", "è", "ẻ", "ẽ", "ẹ", "ê", "ế", "ề", "ể", "ễ", "ệ",
+            "í", "ì", "ỉ", "ĩ", "ị",
+            "ó", "ò", "ỏ", "õ", "ọ", "ô", "ố", "ồ", "ổ", "ỗ", "ộ", "ơ", "ớ", "ờ", "ở", "ỡ", "ợ",
+            "ú", "ù", "ủ", "ũ", "ụ", "ư", "ứ", "ừ", "ử", "ữ", "ự",
+            "ý", "ỳ", "ỷ", "ỹ", "ỵ"};
+                    string[] arr2 = new string[] { 
+            "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+            "d",
+            "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e",
+            "i", "i", "i", "i", "i",
+            "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o",
+            "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u",
+            "y", "y", "y", "y", "y"};
+
+            text = text.ToLower(); // Chuyển hết sang chữ thường trước
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
+        }
+        public async Task<bool> ThemNhanVienVaTaiKhoan(nhan_vien employee, int doanhNghiepId)
+        {
+            if (employee == null) return false;
+
+            // LƯU Ý QUAN TRỌNG:
+            // Câu lệnh 1: Thêm tài khoản VÀ gọi SELECT LAST_INSERT_ID() ngay lập tức để lấy ID vừa sinh ra.
+            string queryTaiKhoan = @"INSERT INTO tai_khoan (doanh_nghiep_id, so_dien_thoai, mat_khau_hash, vai_tro, trang_thai) 
+                             VALUES (@DoanhNghiepId, @SoDienThoai, @MatKhau, @VaiTro, @TrangThai);
+                             SELECT LAST_INSERT_ID();";
+
+            // Câu lệnh 2: Thêm nhân viên, lúc này đã có @TaiKhoanId
+            string queryNhanVien = @"INSERT INTO nhan_vien (doanh_nghiep_id, tai_khoan_id ,ho_ten, so_dien_thoai, chuc_vu) 
+                             VALUES (@DoanhNghiepId, @TaiKhoanId, @HoTen, @SoDienThoai, @ChucVu);";
+
+            using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString))
+            {
+                await conn.OpenAsync();
+
+                using (var transaction = await conn.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        long newTaiKhoanId = 0; // Biến để hứng ID mới sinh ra
+
+                        // --- BƯỚC 1: INSERT TÀI KHOẢN TRƯỚC ---
+                        string  TenKhongDau = RemoveVietnameseAccents(employee.ho_ten).Replace(" ", "");
+                        string generatedPassword = TenKhongDau + employee.so_dien_thoai;
+
+                        using (var cmdTK = new MySqlCommand(queryTaiKhoan, conn, transaction))
+                        {
+                            cmdTK.Parameters.AddWithValue("@DoanhNghiepId", doanhNghiepId);
+                            cmdTK.Parameters.AddWithValue("@TrangThai", "active");
+                            cmdTK.Parameters.AddWithValue("@SoDienThoai", employee.so_dien_thoai);
+                            cmdTK.Parameters.AddWithValue("@MatKhau", generatedPassword);
+                            cmdTK.Parameters.AddWithValue("@VaiTro", "employee");
+
+                            // ExecuteScalarAsync dùng để lấy giá trị cột đầu tiên của dòng đầu tiên (chính là ID vừa tạo)
+                            // Kết quả trả về thường là ulong hoặc decimal, cần convert sang long/int
+                            var result = await cmdTK.ExecuteScalarAsync();
+                            newTaiKhoanId = Convert.ToInt64(result);
+                        }
+
+                        // --- BƯỚC 2: INSERT NHÂN VIÊN (KÈM TAI_KHOAN_ID) ---
+                        using (var cmdNV = new MySqlCommand(queryNhanVien, conn, transaction))
+                        {
+                            cmdNV.Parameters.AddWithValue("@DoanhNghiepId", doanhNghiepId);
+                            cmdNV.Parameters.AddWithValue("@HoTen", employee.ho_ten);
+                            cmdNV.Parameters.AddWithValue("@SoDienThoai", employee.so_dien_thoai);
+                            cmdNV.Parameters.AddWithValue("@ChucVu", employee.chuc_vu);
+
+                            // Điền ID vừa lấy được ở bước trên vào đây
+                            cmdNV.Parameters.AddWithValue("@TaiKhoanId", newTaiKhoanId);
+
+                            await cmdNV.ExecuteNonQueryAsync();
+                        }
+
+                        // --- BƯỚC 3: COMMIT ---
+                        await transaction.CommitAsync();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+                        throw new Exception("Lỗi thêm mới: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }

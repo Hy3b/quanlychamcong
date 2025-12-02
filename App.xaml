@@ -16,8 +16,5 @@
         <DataTemplate DataType="{x:Type vm:AttendanceViewModel}">
             <v:AttendanceView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AttendanceHistoryModel}">
-            <v:AttendanceHistoryView/>
-        </DataTemplate>
     </Application.Resources>
 </Application>

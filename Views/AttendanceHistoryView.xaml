@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="QuanLyChamCong.Views.AttendanceHistoryView"
+﻿<Window x:Class="QuanLyChamCong.Views.AttendanceHistoryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
              d:DesignHeight="600" d:DesignWidth="900"
              Background="#F3F4F6">
 
-    <UserControl.Resources>
+    <Window.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -26,7 +26,7 @@
             <Setter Property="Foreground" Value="#111827"/>
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
-    </UserControl.Resources>
+    </Window.Resources>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -138,4 +138,4 @@
             </Grid>
         </Border>
     </Grid>
-</UserControl>
+</Window>

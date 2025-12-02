@@ -106,3 +106,5 @@ C:\Users\admin\source\repos\QuanLyChamCong\bin\Debug\net8.0-windows\SixLabors.Fo
 C:\Users\admin\source\repos\QuanLyChamCong\bin\Debug\net8.0-windows\System.IO.Packaging.dll
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AttendanceHistoryView.baml
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AttendanceHistoryView.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AddEmployeeView.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AddEmployeeView.baml
