@@ -108,3 +108,9 @@ C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Attend
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AttendanceHistoryView.g.cs
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AddEmployeeView.g.cs
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\AddEmployeeView.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\ForgotPassword.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\SignUp.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\ForgotPassword.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Login.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\SignUp.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Login.baml
