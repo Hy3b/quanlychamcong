@@ -1,0 +1,23 @@
+﻿<Application x:Class="QuanLyChamCong.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:QuanLyChamCong"
+             xmlns:vm="clr-namespace:QuanLyChamCong.ViewModels"
+             xmlns:v="clr-namespace:QuanLyChamCong.Views"
+             StartupUri="Views/Login.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <v:DashboardView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
+            <v:EmployeesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttendanceViewModel}">
+            <v:AttendanceView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttendanceHistoryModel}">
+            <v:AttendanceHistoryView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
