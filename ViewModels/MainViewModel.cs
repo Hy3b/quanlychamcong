@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace QuanLyChamCong.ViewModels
 {
@@ -7,18 +8,29 @@ namespace QuanLyChamCong.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         // 1. Tạo các thể hiện (instances) của các ViewModel con
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(ShortName))]
+        private string _ownerName;
+
+        // ShortName viết dạng Read-only (chỉ đọc), tự tính toán dựa trên OwnerName
+        public string ShortName => !string.IsNullOrEmpty(OwnerName)
+                                   ? OwnerName[0].ToString().ToUpper()
+                                   : "A";
         private readonly DashboardViewModel _dashboardViewModel;
         private readonly EmployeesViewModel _employeesViewModel;
         private readonly AttendanceViewModel _attendanceViewModel;
         // 2. Một property để lưu ViewModel *hiện tại* đang được hiển thị
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
-        public object _currentViewModel;
+        private object _currentViewModel;
 
         // 3. Các "Lệnh" (Command) mà các nút trong View có thể gọi
         public IRelayCommand ShowDashboardCommand { get; }
         public IRelayCommand ShowEmployeesCommand { get; }
-        public IRelayCommand ShowAttendaceCommand { get; }
+
+
+        public IRelayCommand ShowAttendanceCommand { get; }
+
         // ... Thêm các Command khác cho Reports, Settings...
 
         public MainViewModel()
@@ -31,10 +43,8 @@ namespace QuanLyChamCong.ViewModels
             // Khởi tạo các Lệnh
             ShowDashboardCommand = new RelayCommand(ExecuteShowDashboard);
             ShowEmployeesCommand = new RelayCommand(ExecuteShowEmployees);
-            ShowAttendaceCommand = new RelayCommand(ExecuteShowAttendace);
-            // ...
+            ShowAttendanceCommand = new RelayCommand(ExecuteShowAttendance);
 
-            // 4. Thiết lập trang mặc định khi mở ứng dụng
             CurrentViewModel = _dashboardViewModel;
         }
 
@@ -48,7 +58,7 @@ namespace QuanLyChamCong.ViewModels
         {
             CurrentViewModel = _employeesViewModel;
         }
-        private void ExecuteShowAttendace()
+        private void ExecuteShowAttendance()
         {
             CurrentViewModel = _attendanceViewModel;
         }

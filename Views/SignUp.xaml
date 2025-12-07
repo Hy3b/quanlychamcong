@@ -14,7 +14,7 @@
             <RowDefinition Height="1*"/>
             <!-- Nút -->
         </Grid.RowDefinitions>
-
+    
         <!-- PHẦN 1: TIÊU ĐỀ -->
         <TextBlock Grid.Row="0"
                Text="Tạo Tài Khoản"
@@ -22,7 +22,12 @@
                Foreground="#0099FF"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
-
+        <Button Content="← Quay lại đăng nhập"
+            Width="170" Height="30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="20,10,0,0"
+            Click="BtnBack_Click"/>
         <!-- PHẦN 2 + 3: FORM TRÁI & PHẢI -->
         <Grid Grid.Row="1" Margin="20,2,20,1">
             <Grid.ColumnDefinitions>
@@ -44,19 +49,15 @@
 
             <!-- FORM PHẢI -->
             <StackPanel Grid.Column="1" Margin="20">
-                <TextBlock Text="ID"/>
-                <TextBox x:Name="txtID" Height="30"/>
+
 
                 <TextBlock Text="Tên Doanh Nghiệp" Margin="0,10,0,0"/>
                 <TextBox x:Name="txtName" Height="30"/>
-                <TextBlock Text="Tài khoản chủ sở hữu" Margin="0,10,0,0"/>
-                <PasswordBox x:Name="txtTaiKhoan" Height="30"/>
                 <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
                     <TextBlock Text="Vai Trò" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <ComboBox x:Name="cbVaiTro" Width="200" Height="30">
-                        <ComboBoxItem Content="Admin"/>
-                        <ComboBoxItem Content="Nhân viên"/>
                         <ComboBoxItem Content="Quản lý"/>
+                        <ComboBoxItem Content="Chủ doanh nghiệp"/>
                     </ComboBox>
                 </StackPanel>
 

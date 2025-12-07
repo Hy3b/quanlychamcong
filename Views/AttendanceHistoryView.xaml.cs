@@ -24,10 +24,11 @@ namespace QuanLyChamCong.Views
 
     public partial class AttendanceHistoryView : Window
     {
-        public AttendanceHistoryView()
+        public AttendanceHistoryView(AttendanceModel attendance)
         {
             InitializeComponent();
-            this.DataContext = new AttendanceHistoryViewModel();
+
+            this.DataContext = new AttendanceHistoryViewModel(attendance);
         }
     }
 }

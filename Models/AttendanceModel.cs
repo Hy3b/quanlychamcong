@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace QuanLyChamCong.Models
 {
-    internal class AttendanceModel
+    public class AttendanceModel
     {
         // Các Properties cần có trong ViewModel
         public int NhanVienId { get; set; }      // Map với nv.id
@@ -21,9 +21,6 @@ namespace QuanLyChamCong.Models
         public string TrangThai { get; set; }       // Để disable/enable nút bấm
         //public ObservableCollection<AttendanceRecord> HistoryList { get; set; } Danh sách lịch sử
     }
-    internal class AttendanceRecord : AttendanceModel
-    {
-        public DateTime Ngay { get; set; }
-    }
+
 
 }

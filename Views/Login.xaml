@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyChamCong.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Đăng Nhập" Height="450" Width="874">
     <Grid>
         <Grid.ColumnDefinitions>

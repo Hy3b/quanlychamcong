@@ -41,12 +41,17 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker SelectedDate="{Binding SelectedDate}" 
-                            Width="120" 
+                <DatePicker Width="120"
                             VerticalContentAlignment="Center"
-                            BorderThickness="0"     
-                            Background="Transparent" 
-                            SelectedDateFormat="Short"/>
+                            BorderThickness="0"
+                            Background="Transparent"
+                            SelectedDateFormat="Short">
+                    <DatePicker.SelectedDate>
+                            <Binding Path="SelectedDate" 
+                                     Mode="TwoWay" 
+                                     UpdateSourceTrigger="LostFocus"/>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
 
                 <TextBox Grid.Column="3" Width="250" Height="35" 
                          Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
@@ -55,8 +60,8 @@
 
                 
 
-                            
-                <TextBlock Grid.Column="3" Text="Tìm theo tên hoặc ID..." 
+
+                <TextBlock Grid.Column="3" ToolTip="Tìm theo tên hoặc ID..." 
                            IsHitTestVisible="False" VerticalAlignment="Center" Margin="18,0,0,0" Foreground="#CCC">
 
                     <TextBlock.Style>
@@ -76,7 +81,7 @@
                 <StackPanel Grid.Column="4" Orientation="Horizontal">
 
                     <Button Content="Xem lịch sử" 
-                            Command="{Binding ViewHistoryCommand}"
+                            Command="{Binding ViewAttendanceHistoryCommand}"
                             CommandParameter="{Binding ElementName=dgChamCong, Path=SelectedItem}"
                             Background="#FF9800" Foreground="White" FontWeight="Bold"
                             Width="120" Height="35" BorderThickness="0" Margin="0,0,10,0">

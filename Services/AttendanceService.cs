@@ -11,7 +11,7 @@ namespace QuanLyChamCong.Services
 {
     internal class AttendanceService 
     {
-        public List<AttendanceModel> GetDailyAttendance()
+        public List<AttendanceModel> GetDailyAttendance(DateTime selectedDay)
         {
             List<AttendanceModel> list = new List<AttendanceModel>();
 
@@ -31,7 +31,7 @@ namespace QuanLyChamCong.Services
                     FROM cham_cong cc
                     JOIN nhan_vien nv ON cc.nhan_vien_id = nv.id
                     JOIN ca_lam cl ON cc.ca_id = cl.id
-                    WHERE cl.ngay_lam = CURDATE() 
+                    WHERE cl.ngay_lam = DATE(@selectedDay)
                     ORDER BY cc.gio_vao DESC;";
 
             try
@@ -41,6 +41,7 @@ namespace QuanLyChamCong.Services
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@selectedDay", selectedDay.Date);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace QuanLyChamCong.Views
 
             try
             {
-                string connectionString = "Server=localhost;Database=chamcong;User ID=root;Password=tien0399007905";
+                string connectionString = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
                 MySqlConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
 
@@ -63,8 +64,8 @@ namespace QuanLyChamCong.Views
                     MessageBox.Show("Vui lòng kiểm tra điện thoại của bạn!", "Thành công");
 
                     // ✔ Sau này bạn có thể thêm chức năng gửi mã OTP tại đây
-                    MainWindow main = new MainWindow();
-                    main.Show();
+                    Login login = new Login();
+                    login.Show();
                     this.Close();
                 }
                 else
@@ -83,7 +84,7 @@ namespace QuanLyChamCong.Views
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             // Mở lại Login Window
-            MainWindow loginWindow = new MainWindow(); // Login.xaml phải tồn tại
+            Login loginWindow = new Login(); // Login.xaml phải tồn tại
             loginWindow.Show();
 
             // Đóng ForgotPassword hiện tại

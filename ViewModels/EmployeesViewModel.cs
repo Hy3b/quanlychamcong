@@ -164,6 +164,8 @@ namespace QuanLyChamCong.ViewModels
         {
             LoadDataAsync();
         }
+        
+       
         /// <summary>
         // Hàm khởi tạo
         /// </summary>

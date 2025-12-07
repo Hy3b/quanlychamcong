@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Input; // <-- Thêm dòng này
 
@@ -24,7 +25,7 @@ namespace QuanLyChamCong.Views
             }
 
             // ✅ Chuỗi kết nối MySQL — sử dụng tài khoản cố định (root)
-            string constr = "Server=localhost;Database=chamcong;User ID=root;Password=tien0399007905;";
+            string constr = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
 
             using (MySqlConnection con = new MySqlConnection(constr))
             {
@@ -33,10 +34,15 @@ namespace QuanLyChamCong.Views
                     con.Open();
 
                     // ✅ Câu truy vấn kiểm tra tài khoản
-                    string query = "SELECT * FROM tai_khoan WHERE so_dien_thoai = @user AND mat_khau_hash = @pass";
-
+                    string query = @"
+                                    SELECT dn.ten_doanh_nghiep
+                                    FROM tai_khoan tk
+                                    JOIN doanh_nghiep dn ON tk.id = dn.tai_khoan_chu_so_huu
+                                    WHERE tk.so_dien_thoai = @user AND tk.mat_khau_hash = @pass AND (tk.vai_tro = 'owner' OR tk.vai_tro = 'admin')";
+                    string doanhNghiepTen = "";
                     using (MySqlCommand command = new MySqlCommand(query, con))
                     {
+                        
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@pass", pass);
 
@@ -44,13 +50,15 @@ namespace QuanLyChamCong.Views
                         {
                             if (reader.Read() == true) // nếu có kết quả
                             {
+                                
                                 MessageBox.Show("Đăng nhập thành công!", "Welcome");
                                 // đóng login
                                 // 👉 Chuyển sang cửa sổ chính (ví dụ HomeWindow)
                                 // HomeWindow home = new HomeWindow();
                                 // home.Show();
                                 // this.Close();
-                                MainWindow mainHome = new MainWindow();
+                                doanhNghiepTen = reader["ten_doanh_nghiep"].ToString();
+                                MainWindow mainHome = new MainWindow(doanhNghiepTen);
 
                                 // 2. Hiển thị trang chủ
                                 mainHome.Show();

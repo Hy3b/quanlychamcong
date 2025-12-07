@@ -4,7 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="900"
+             d:DesignHeight="600" d:DesignWidth="800"
+             WindowStartupLocation="CenterScreen"
              Background="#F3F4F6">
 
     <Window.Resources>
@@ -82,7 +83,7 @@
                 <TextBlock Grid.Row="0" Text="Lịch sử chấm công" Style="{StaticResource SectionHeaderStyle}"/>
 
                 <DataGrid Grid.Row="1" 
-                          ItemsSource="{Binding AttendanceHistoryList}"
+                          ItemsSource="{Binding AttendanceRecords}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           IsReadOnly="True"
@@ -126,12 +127,16 @@
                     </DataGrid.CellStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Ngày" Binding="{Binding Ngay, StringFormat='MMM dd, yyyy'}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Ngày" Binding="{Binding Ngay}" Width="1.5*"/>
 
-                        <DataGridTextColumn Header="Giờ chấm vào" Binding="{Binding GioVao}" Width="*"/>
+                        <DataGridTextColumn Header="Giờ chấm vào" 
+                                            Binding="{Binding gio_vao, StringFormat=HH:mm:ss}" 
+                                            Width="*"/>
 
-                        <DataGridTextColumn Header="Giờ chấm ra" Binding="{Binding GioRa}" Width="*"/>
-                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="*"/>
+                        <DataGridTextColumn Header="Giờ chấm ra" 
+                                            Binding="{Binding gio_ra, StringFormat=HH:mm:ss, TargetNullValue='--:--'}" 
+                                            Width="*"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trang_thai}" Width="*"/>
 
                     </DataGrid.Columns>
                 </DataGrid>

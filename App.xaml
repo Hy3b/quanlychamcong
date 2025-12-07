@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:QuanLyChamCong"
              xmlns:vm="clr-namespace:QuanLyChamCong.ViewModels"
              xmlns:v="clr-namespace:QuanLyChamCong.Views"
-             StartupUri="Views/MainWindow.xaml">
+             StartupUri="Views/Login.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
             <v:DashboardView/>
