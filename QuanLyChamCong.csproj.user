@@ -11,10 +11,19 @@
     <Compile Update="Views\DashboardView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\EditSalaryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\EmployeesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\EditEmployeeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MonthlySalaryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SalaryForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

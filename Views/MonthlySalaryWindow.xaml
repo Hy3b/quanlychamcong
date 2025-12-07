@@ -1,0 +1,49 @@
+﻿<Window x:Class="QuanLyChamCong.Views.MonthlySalaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lịch sử Lương Hàng Tháng" Height="600" Width="1100"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#F5F7FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#1e3a8a" Padding="20">
+            <TextBlock Text="BẢNG LƯƠNG TỔNG HỢP HÀNG THÁNG" Foreground="White" 
+                       FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </Border>
+
+        <DataGrid Grid.Row="1" Margin="20"
+                  ItemsSource="{Binding MonthlyList}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  RowHeight="35"
+                  AlternationCount="2">
+
+            <DataGrid.Resources>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tháng" Binding="{Binding Thang}" FontWeight="Bold" Width="80"/>
+                <DataGridTextColumn Header="ID NV" Binding="{Binding NhanVienId}" Width="60"/>
+                <DataGridTextColumn Header="Họ Tên" Binding="{Binding HoTen}" Width="150" FontWeight="SemiBold"/>
+
+                <DataGridTextColumn Header="Lương CB" Binding="{Binding TongLuongCoBan, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Phụ Cấp" Binding="{Binding TongPhuCap, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tăng Ca" Binding="{Binding TongTangCa, StringFormat=N0}" Width="*"/>
+
+                <DataGridTextColumn Header="Bảo Hiểm" Binding="{Binding TongTruBaoHiem, StringFormat=N0}" Foreground="Red" Width="*"/>
+                <DataGridTextColumn Header="Thuế" Binding="{Binding TongTruThue, StringFormat=N0}" Foreground="Red" Width="*"/>
+
+                <DataGridTextColumn Header="THỰC LĨNH" Binding="{Binding ThucLinhThang, StringFormat=N0}" 
+                                    FontWeight="Bold" Foreground="#10B981" FontSize="13" Width="*"/>
+
+                <DataGridTextColumn Header="Ngày chốt" Binding="{Binding NgayChotLuong}" Width="140" Foreground="Gray"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

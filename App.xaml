@@ -19,5 +19,8 @@
         <DataTemplate DataType="{x:Type vm:AttendanceHistoryModel}">
             <v:AttendanceHistoryView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SalaryDayViewModel}">
+            <v:SalaryForm/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

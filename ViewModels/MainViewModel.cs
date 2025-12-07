@@ -11,6 +11,7 @@ namespace QuanLyChamCong.ViewModels
         private readonly EmployeesViewModel _employeesViewModel;
         private readonly AttendanceViewModel _attendanceViewModel;
         private readonly AttendanceHistoryModel _attendanceHistoryViewModel;
+        private readonly SalaryDayViewModel _salaryDayViewModel;
         // 2. Một property để lưu ViewModel *hiện tại* đang được hiển thị
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
@@ -21,6 +22,7 @@ namespace QuanLyChamCong.ViewModels
         public IRelayCommand ShowEmployeesCommand { get; }
         public IRelayCommand ShowAttendaceCommand { get; }
         public IRelayCommand ShowAttendanceHistoryCommand { get; }
+        public IRelayCommand ShowSalaryCommand { get; }
         // ... Thêm các Command khác cho Reports, Settings...
 
         public MainViewModel()
@@ -30,11 +32,13 @@ namespace QuanLyChamCong.ViewModels
             _employeesViewModel = new EmployeesViewModel();
             _attendanceViewModel = new AttendanceViewModel();
             _attendanceHistoryViewModel = new AttendanceHistoryModel();
+            _salaryDayViewModel = new SalaryDayViewModel();
             // Khởi tạo các Lệnh
             ShowDashboardCommand = new RelayCommand(ExecuteShowDashboard);
             ShowEmployeesCommand = new RelayCommand(ExecuteShowEmployees);
             ShowAttendaceCommand = new RelayCommand(ExecuteShowAttendace);
             ShowAttendanceHistoryCommand = new RelayCommand(ExecuteShowAttendanceHistory);
+            ShowSalaryCommand = new RelayCommand(ExecuteShowSalary);
             // ...
 
             // 4. Thiết lập trang mặc định khi mở ứng dụng
@@ -58,6 +62,10 @@ namespace QuanLyChamCong.ViewModels
         private void ExecuteShowAttendanceHistory()
         {
             CurrentViewModel = _attendanceHistoryViewModel;
+        }
+        private void ExecuteShowSalary()
+        {
+            CurrentViewModel = _salaryDayViewModel;
         }
     }
 }
