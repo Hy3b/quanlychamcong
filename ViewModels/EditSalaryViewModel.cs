@@ -37,7 +37,7 @@ namespace QuanLyChamCong.ViewModels
 
             _nhanVienId = salaryItem.NhanVienId;
             _hoTen = salaryItem.HoTen;
-            _luongCoBan = salaryItem.LuongCoBanNgay;
+            //_luongCoBan = salaryItem.LuongCoBanNgay;
             _phuCap = salaryItem.PhuCap;
             _luongTangCa = salaryItem.LuongTangCa;
             _truThue = salaryItem.TruThue;
@@ -52,7 +52,7 @@ namespace QuanLyChamCong.ViewModels
                 // Lưu ý: Dùng Property viết hoa (LuongCoBan, PhuCap...) để lấy giá trị mới nhất trên giao diện
                 bool isSuccess = await _salaryService.UpdateDailySalary(
                     _nhanVienId,
-                    LuongCoBan,
+                    //LuongCoBan,
                     PhuCap,
                     LuongTangCa,
                     TruThue

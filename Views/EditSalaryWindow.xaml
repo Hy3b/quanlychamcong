@@ -71,8 +71,7 @@
                 </StackPanel>
             </Border>
 
-            <TextBlock Text="Lương cơ bản (VNĐ):"/>
-            <TextBox Text="{Binding LuongCoBan, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"/>
+            
 
             <TextBlock Text="Phụ cấp (VNĐ):"/>
             <TextBox Text="{Binding PhuCap, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"/>

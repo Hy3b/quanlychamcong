@@ -12,7 +12,7 @@ namespace QuanLyChamCong.Services
     internal class SalaryDayService
     {
         // Hàm cập nhật lương, trả về true nếu thành công
-        public async Task<bool> UpdateDailySalary(string nhanVienId, decimal luongCoBan, decimal phuCap, decimal luongTangCa, decimal truThue)
+        public async Task<bool> UpdateDailySalary(string nhanVienId, decimal phuCap, decimal luongTangCa, decimal truThue)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
 
@@ -23,16 +23,14 @@ namespace QuanLyChamCong.Services
                     await conn.OpenAsync(); // Mở kết nối bất đồng bộ
 
                     string query = @"UPDATE luong_ngay 
-                                     SET luong_co_ban_ngay = @luong, 
-                                         phu_cap = @phuCap, 
+                                     SET phu_cap = @phuCap, 
                                          luong_tang_ca = @tangCa,
                                          tru_thue = @thue,
-                                         thuc_linh_ngay = (@luong + @phuCap*500 + @tangCa) - @thue
+                                         thuc_linh_ngay = ( @phuCap*500 + @tangCa) - @thue
                                      WHERE nhan_vien_id = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@luong", luongCoBan);
                         cmd.Parameters.AddWithValue("@phuCap", phuCap);
                         cmd.Parameters.AddWithValue("@tangCa", luongTangCa);
                         cmd.Parameters.AddWithValue("@thue", truThue);
