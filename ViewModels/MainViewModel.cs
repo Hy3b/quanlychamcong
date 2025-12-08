@@ -16,13 +16,14 @@ namespace QuanLyChamCong.ViewModels
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
         public object _currentViewModel;
-
+        private object _currentView;
         // 3. Các "Lệnh" (Command) mà các nút trong View có thể gọi
         public IRelayCommand ShowDashboardCommand { get; }
         public IRelayCommand ShowEmployeesCommand { get; }
         public IRelayCommand ShowAttendaceCommand { get; }
         public IRelayCommand ShowAttendanceHistoryCommand { get; }
         public IRelayCommand ShowSalaryCommand { get; }
+
         // ... Thêm các Command khác cho Reports, Settings...
 
         public MainViewModel()
@@ -39,6 +40,7 @@ namespace QuanLyChamCong.ViewModels
             ShowAttendaceCommand = new RelayCommand(ExecuteShowAttendace);
             ShowAttendanceHistoryCommand = new RelayCommand(ExecuteShowAttendanceHistory);
             ShowSalaryCommand = new RelayCommand(ExecuteShowSalary);
+
             // ...
 
             // 4. Thiết lập trang mặc định khi mở ứng dụng
@@ -65,7 +67,7 @@ namespace QuanLyChamCong.ViewModels
         }
         private void ExecuteShowSalary()
         {
-            CurrentViewModel = _salaryDayViewModel;
+            CurrentViewModel = new SalaryDayViewModel();
         }
     }
 }

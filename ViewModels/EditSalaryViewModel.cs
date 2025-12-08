@@ -5,11 +5,12 @@ using System;
 using System.Configuration;
 using System.Windows;
 using MySql.Data.MySqlClient;
-
+using QuanLyChamCong.Services; // Nhớ using namespace Service
 namespace QuanLyChamCong.ViewModels
 {
     public partial class EditSalaryViewModel : ObservableObject
     {
+        private readonly SalaryDayService _salaryService;
         [ObservableProperty]
         private string _hoTen;
 
@@ -31,27 +32,45 @@ namespace QuanLyChamCong.ViewModels
 
         public EditSalaryViewModel(SalaryDay salaryItem)
         {
+            // Khởi tạo Service
+            _salaryService = new SalaryDayService();
+
             _nhanVienId = salaryItem.NhanVienId;
             _hoTen = salaryItem.HoTen;
             _luongCoBan = salaryItem.LuongCoBanNgay;
             _phuCap = salaryItem.PhuCap;
             _luongTangCa = salaryItem.LuongTangCa;
-
-            // Lấy dữ liệu thuế cũ lên
             _truThue = salaryItem.TruThue;
         }
 
         [RelayCommand]
-        private void Save()
+        private async Task Save() // Chuyển thành async Task
         {
-            if (UpdateSalaryToMySQL())
+            try
             {
-                MessageBox.Show("Cập nhật thành công!", "Thông báo");
-                CloseAction?.Invoke();
+                // Gọi Service để lưu dữ liệu
+                // Lưu ý: Dùng Property viết hoa (LuongCoBan, PhuCap...) để lấy giá trị mới nhất trên giao diện
+                bool isSuccess = await _salaryService.UpdateDailySalary(
+                    _nhanVienId,
+                    LuongCoBan,
+                    PhuCap,
+                    LuongTangCa,
+                    TruThue
+                );
+
+                if (isSuccess)
+                {
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo");
+                    CloseAction?.Invoke();
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu nào thay đổi hoặc lỗi ID.", "Cảnh báo");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Cập nhật thất bại!", "Lỗi");
+                MessageBox.Show("Cập nhật thất bại: " + ex.Message, "Lỗi");
             }
         }
 
@@ -61,47 +80,5 @@ namespace QuanLyChamCong.ViewModels
             CloseAction?.Invoke();
         }
 
-        private bool UpdateSalaryToMySQL()
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-
-                    // CÂU LỆNH SQL ĐÃ CHUẨN HÓA TÊN CỘT:
-                    // 1. luong_co_ban_ngay (Đã sửa theo bạn báo)
-                    // 2. Tự động tính thuc_linh_ngay = (Lương + Phụ cấp + Tăng ca) - Thuế
-
-                    string query = @"UPDATE luong_ngay 
-                             SET luong_co_ban_ngay = @luong, 
-                                 phu_cap = @phuCap, 
-                                 luong_tang_ca = @tangCa,
-                                 tru_thue = @thue,
-                                 thuc_linh_ngay = (@luong + @phuCap*500 + @tangCa) - @thue
-                             WHERE nhan_vien_id = @id";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        // Truyền tham số (Dùng Property viết hoa)
-                        cmd.Parameters.AddWithValue("@luong", LuongCoBan);
-                        cmd.Parameters.AddWithValue("@phuCap", PhuCap);
-                        cmd.Parameters.AddWithValue("@tangCa", LuongTangCa);
-                        cmd.Parameters.AddWithValue("@thue", TruThue);
-
-                        // ID dùng để tìm dòng cần sửa (WHERE)
-                        cmd.Parameters.AddWithValue("@id", _nhanVienId);
-
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi SQL: " + ex.Message);
-                    return false;
-                }
-            }
-        }
     }
 }
