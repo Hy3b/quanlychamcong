@@ -10,6 +10,7 @@ namespace QuanLyChamCong.Views
     public partial class MainWindow : Window
     {
         public MainViewModel mainViewModel { get; set; }
+        public int OwnerID { get; set; }
         public MainWindow(string owner_name)
         {
             InitializeComponent();

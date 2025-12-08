@@ -94,7 +94,8 @@ namespace QuanLyChamCong.ViewModels
                 DailyAttendance.Add(item);
             }
         }
-        public void RefreshCommand()
+        [RelayCommand]
+        public void Refresh()
         {
             LoadData();
         }

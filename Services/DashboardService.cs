@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using QuanLyChamCong.Helpers;
 using QuanLyChamCong.Models;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,17 @@ namespace QuanLyChamCong.Services
             List<DaylyAttendanceStat> rawData = new List<DaylyAttendanceStat>();
             string connect = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
             string query = @"
-                    SELECT 
-                        cl.ngay_lam,
-                        SUM(CASE WHEN cc.trang_thai = 'checked_in' THEN 1 ELSE 0 END) AS dung_gio,
-                        SUM(CASE WHEN cc.trang_thai = 'late' THEN 1 ELSE 0 END) AS di_muon,
-                        SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS vang
-                    FROM cham_cong cc
-                    JOIN ca_lam cl ON cc.ca_id = cl.id
-                    WHERE cl.ngay_lam BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
-                    GROUP BY cl.ngay_lam";
+                            SELECT 
+                                cl.ngay_lam,
+                                SUM(CASE WHEN cc.trang_thai = 'checked_in' THEN 1 ELSE 0 END) AS dung_gio,
+                                SUM(CASE WHEN cc.trang_thai = 'late' THEN 1 ELSE 0 END) AS di_muon,
+                                SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS vang
+                            FROM cham_cong cc
+                            JOIN ca_lam cl ON cc.ca_id = cl.id
+                            JOIN nhan_vien nv ON nv.id = cc.nhan_vien_id    -- 🔥 JOIN thêm để lọc DN
+                            WHERE cl.ngay_lam BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
+                              AND nv.doanh_nghiep_id = @DoanhNghiepID      -- 🔥 Điều kiện DN
+                            GROUP BY cl.ngay_lam;";
             // Lưu ý: Tôi bỏ cột 'thu_trong_tuan' trong SQL để xử lý đồng bộ ở C# cho dễ
 
             try
@@ -37,6 +40,7 @@ namespace QuanLyChamCong.Services
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -113,7 +117,7 @@ namespace QuanLyChamCong.Services
                         SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS vang
                     FROM cham_cong cc
                     JOIN ca_lam cl ON cc.ca_id = cl.id
-                    WHERE cl.ngay_lam = CURDATE()
+                    WHERE cl.ngay_lam = CURDATE() AND cl.doanh_nghiep_id = @DoanhNghiepID
                     GROUP BY cl.ngay_lam";
 
             try
@@ -123,6 +127,7 @@ namespace QuanLyChamCong.Services
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Nếu có dữ liệu ngày hôm nay
@@ -172,7 +177,7 @@ namespace QuanLyChamCong.Services
                         SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS tong_vang
                     FROM cham_cong cc
                     JOIN ca_lam cl ON cc.ca_id = cl.id
-                    WHERE YEARWEEK(cl.ngay_lam, 1) <= YEARWEEK(CURDATE(), 1)
+                    WHERE YEARWEEK(cl.ngay_lam, 1) <= YEARWEEK(CURDATE(), 1)   AND cl.doanh_nghiep_id = @DoanhNghiepID
                     GROUP BY YEAR(cl.ngay_lam), WEEK(cl.ngay_lam, 1)
                     ORDER BY nam DESC, tuan_so DESC
                     LIMIT 4; -- (Tùy chọn) Chỉ lấy 4 tuần gần nhất";
@@ -184,6 +189,7 @@ namespace QuanLyChamCong.Services
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -215,7 +221,14 @@ namespace QuanLyChamCong.Services
         {
             int total = 0;
             string connect = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
-            string query = "SELECT COUNT(*) \r\nFROM nhan_vien nv\r\nINNER JOIN tai_khoan tk \r\n    ON tk.id = nv.tai_khoan_id\r\n    AND tk.trang_thai = 'active';";
+            string query = @"
+                SELECT COUNT(*) 
+                FROM nhan_vien nv
+                INNER JOIN tai_khoan tk 
+                    ON tk.id = nv.tai_khoan_id
+                    AND tk.trang_thai = 'active'
+                WHERE nv.doanh_nghiep_id = @DoanhNghiepID;
+            ";
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connect))
@@ -223,6 +236,7 @@ namespace QuanLyChamCong.Services
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         total = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }

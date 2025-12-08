@@ -114,3 +114,9 @@ C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Forgot
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Login.g.cs
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\SignUp.g.cs
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\Login.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\CaLamView.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\CaLamView.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\ThemCaLamView.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\ThemCaLamView.baml
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\SuaCaLamView.g.cs
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\Views\SuaCaLamView.baml

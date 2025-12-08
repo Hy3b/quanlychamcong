@@ -42,12 +42,10 @@ namespace QuanLyChamCong.Views
             }
             // Lấy text hiển thị trong ComboBox (ví dụ: "Chủ doanh nghiệp")
             // Sử dụng toán tử ?. để tránh lỗi nếu người dùng chưa chọn gì
-            string selectedText = (cbVaiTro.SelectedItem as ComboBoxItem)?.Content.ToString();
 
             // Kiểm tra rỗng
             if (string.IsNullOrEmpty(soDienThoai) || string.IsNullOrEmpty(matKhau) ||
-                string.IsNullOrEmpty(confirm) || string.IsNullOrEmpty(tenDN) ||
-                string.IsNullOrEmpty(selectedText))
+                string.IsNullOrEmpty(confirm) || string.IsNullOrEmpty(tenDN))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
                 return;
@@ -60,20 +58,6 @@ namespace QuanLyChamCong.Views
                 return;
             }
 
-            // Xử lý Logic Vai Trò (Mapping từ Tiếng Việt sang Database)
-            string vaiTroDb = "";
-            if (selectedText == "Chủ doanh nghiệp")
-            {
-                vaiTroDb = "owner";
-            }
-            else if (selectedText == "Quản lý")
-            {
-                vaiTroDb = "admin";
-            }
-            else
-            {
-                vaiTroDb = "staff";
-            }
 
             // ======================================================
             // PHẦN 2: XỬ LÝ DATABASE (TRANSACTION)
@@ -115,7 +99,7 @@ namespace QuanLyChamCong.Views
                             // ---------------------------------------------------------
                             string insertTK = @"INSERT INTO tai_khoan 
                                                (doanh_nghiep_id, so_dien_thoai, mat_khau_hash, vai_tro, trang_thai)
-                                               VALUES (@dnId, @soDT, @mk, @vaiTro, 'active')";
+                                               VALUES (@dnId, @soDT, @mk, 'owner', 'active')";
 
                             using (MySqlCommand cmd = new MySqlCommand(insertTK, conn, transaction))
                             {
@@ -124,7 +108,6 @@ namespace QuanLyChamCong.Views
 
                                 // Lưu ý: Thực tế nên mã hóa mật khẩu (SHA256) trước khi truyền vào đây
                                 cmd.Parameters.AddWithValue("@mk", matKhau);
-                                cmd.Parameters.AddWithValue("@vaiTro", vaiTroDb); // owner hoặc admin
 
                                 cmd.ExecuteNonQuery();
 
@@ -136,16 +119,16 @@ namespace QuanLyChamCong.Views
                             // BƯỚC 3: UPDATE NGƯỢC LẠI DOANH NGHIỆP (Xác nhận chủ sở hữu)
                             // Chỉ thực hiện nếu vai trò là 'owner'
                             // ---------------------------------------------------------
-                            if (vaiTroDb == "owner")
-                            {
-                                string updateDN = "UPDATE doanh_nghiep SET tai_khoan_chu_so_huu = @tkId WHERE id = @dnId";
-                                using (MySqlCommand cmd = new MySqlCommand(updateDN, conn, transaction))
+                            
+                            
+                           string updateDN = "UPDATE doanh_nghiep SET tai_khoan_chu_so_huu = @tkId WHERE id = @dnId";
+                           using (MySqlCommand cmd = new MySqlCommand(updateDN, conn, transaction))
                                 {
                                     cmd.Parameters.AddWithValue("@tkId", taiKhoanId); // ID 50
                                     cmd.Parameters.AddWithValue("@dnId", doanhNghiepId); // ID 101
                                     cmd.ExecuteNonQuery();
                                 }
-                            }
+                            
 
                             // ---------------------------------------------------------
                             // HOÀN TẤT: Lưu mọi thay đổi vào Database

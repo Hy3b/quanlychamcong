@@ -43,18 +43,21 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Họ và tên:" 
                    VerticalAlignment="Center" Margin="0,0,0,15" FontWeight="SemiBold"/>
         <TextBox x:Name="txtFullName" Grid.Row="1" Grid.Column="1" 
+                 Text="{Binding Hoten}"
                  Height="30" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5,0"/>
 
         <!-- 2. SỐ ĐIỆN THOẠI -->
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Số điện thoại:" 
                    VerticalAlignment="Center" Margin="0,0,0,15" FontWeight="SemiBold"/>
         <TextBox x:Name="txtPhone" Grid.Row="2" Grid.Column="1" 
+                 Text="{Binding Sodt}"
                  Height="30" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5,0"/>
 
         <!-- 3. CHỨC VỤ -->
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Chức vụ:" 
                    VerticalAlignment="Center" Margin="0,0,0,15" FontWeight="SemiBold"/>
         <TextBox x:Name="txtPosition" Grid.Row="3" Grid.Column="1" 
+                 Text="{Binding Chucvu}"
                  Height="30" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5,0"/>
 
         <!-- KHU VỰC NÚT BẤM (Footer) -->
@@ -64,12 +67,14 @@
             <!-- Nút Hủy -->
             <Button x:Name="btnCancel" Content="Hủy bỏ" Width="100" Height="35"
                     Background="#DDDDDD" BorderThickness="0" Margin="0,0,10,0"
-                    Cursor="Hand" Click="btnCancel_Click"/>
+                    Cursor="Hand" Command="{Binding HuyCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
 
             <!-- Nút Lưu -->
             <Button x:Name="btnSave" Content="Lưu lại" Width="100" Height="35"
                     Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"
-                    Cursor="Hand" Click="btnSave_Click"/>
+                    Cursor="Hand" Command="{Binding LuuCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
         </StackPanel>
 
     </Grid>

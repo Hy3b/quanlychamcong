@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using QuanLyChamCong.Models;
+using QuanLyChamCong.Helpers;
 namespace QuanLyChamCong.Services
 {
     class AttendanceHistoryService
@@ -20,10 +21,16 @@ namespace QuanLyChamCong.Services
             var list = new List<AttendanceRecord>();
 
             // Câu lệnh SQL: Lấy dữ liệu theo nhân viên, sắp xếp ngày mới nhất lên đầu
-            string query = @"SELECT gio_vao, gio_ra, trang_thai 
-                             FROM cham_cong 
-                             WHERE nhan_vien_id = @NhanVienId
-                             ORDER BY gio_vao DESC;";
+            string query = @"SELECT 
+                            cc.gio_vao, 
+                            cc.gio_ra, 
+                            cc.trang_thai
+                        FROM cham_cong cc
+                        JOIN nhan_vien nv 
+                              ON nv.id = cc.nhan_vien_id        -- để lấy doanh nghiệp
+                        WHERE cc.nhan_vien_id = @NhanVienId
+                          AND nv.doanh_nghiep_id = @DoanhNghiepID
+                        ORDER BY cc.gio_vao DESC;";
 
             using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
@@ -33,7 +40,7 @@ namespace QuanLyChamCong.Services
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@NhanVienId", nhanVienId);
-
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

@@ -11,6 +11,9 @@
     <Compile Update="Views\AttendanceView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CaLamView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DashboardView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,6 +21,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\EditEmployeeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SuaCaLamView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ThemCaLamView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

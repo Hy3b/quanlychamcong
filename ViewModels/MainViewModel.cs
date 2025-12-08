@@ -19,6 +19,7 @@ namespace QuanLyChamCong.ViewModels
         private readonly DashboardViewModel _dashboardViewModel;
         private readonly EmployeesViewModel _employeesViewModel;
         private readonly AttendanceViewModel _attendanceViewModel;
+        private readonly CaLamViewModel _caLamViewModel;
         // 2. Một property để lưu ViewModel *hiện tại* đang được hiển thị
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
@@ -30,7 +31,7 @@ namespace QuanLyChamCong.ViewModels
 
 
         public IRelayCommand ShowAttendanceCommand { get; }
-
+        public IRelayCommand ShowCaLamCommand { get; }
         // ... Thêm các Command khác cho Reports, Settings...
 
         public MainViewModel()
@@ -39,11 +40,12 @@ namespace QuanLyChamCong.ViewModels
             _dashboardViewModel = new DashboardViewModel();
             _employeesViewModel = new EmployeesViewModel();
             _attendanceViewModel = new AttendanceViewModel();
-
+            _caLamViewModel = new CaLamViewModel();
             // Khởi tạo các Lệnh
             ShowDashboardCommand = new RelayCommand(ExecuteShowDashboard);
             ShowEmployeesCommand = new RelayCommand(ExecuteShowEmployees);
             ShowAttendanceCommand = new RelayCommand(ExecuteShowAttendance);
+            ShowCaLamCommand = new RelayCommand(ExecuteShowCaLam);
 
             CurrentViewModel = _dashboardViewModel;
         }
@@ -62,6 +64,9 @@ namespace QuanLyChamCong.ViewModels
         {
             CurrentViewModel = _attendanceViewModel;
         }
-
+        private void ExecuteShowCaLam()
+        {
+            CurrentViewModel = _caLamViewModel;
+        }
     }
 }

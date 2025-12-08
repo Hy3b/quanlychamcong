@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QuanLyChamCong.Helpers;
 namespace QuanLyChamCong.Services
 {
     internal class AttendanceService 
@@ -31,7 +31,7 @@ namespace QuanLyChamCong.Services
                     FROM cham_cong cc
                     JOIN nhan_vien nv ON cc.nhan_vien_id = nv.id
                     JOIN ca_lam cl ON cc.ca_id = cl.id
-                    WHERE cl.ngay_lam = DATE(@selectedDay)
+                    WHERE cl.ngay_lam = DATE(@selectedDay) AND nv.doanh_nghiep_id = @DoanhNghiepId
                     ORDER BY cc.gio_vao DESC;";
 
             try
@@ -42,6 +42,7 @@ namespace QuanLyChamCong.Services
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@selectedDay", selectedDay.Date);
+                        cmd.Parameters.AddWithValue("@DoanhNghiepId", DoanhNghiep.CurrentID);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

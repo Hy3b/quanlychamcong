@@ -48,19 +48,9 @@
             </StackPanel>
 
             <!-- FORM PHẢI -->
-            <StackPanel Grid.Column="1" Margin="20">
-
-
+            <StackPanel Grid.Column="1" Margin="20,10,20,20">
                 <TextBlock Text="Tên Doanh Nghiệp" Margin="0,10,0,0"/>
                 <TextBox x:Name="txtName" Height="30"/>
-                <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
-                    <TextBlock Text="Vai Trò" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <ComboBox x:Name="cbVaiTro" Width="200" Height="30">
-                        <ComboBoxItem Content="Quản lý"/>
-                        <ComboBoxItem Content="Chủ doanh nghiệp"/>
-                    </ComboBox>
-                </StackPanel>
-
             </StackPanel>
         </Grid>
 

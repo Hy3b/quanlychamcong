@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using QuanLyChamCong.Helpers;
+using QuanLyChamCong.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,7 +8,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QuanLyChamCong.Models;
 namespace QuanLyChamCong.Services
 {
     public class EmployeesService
@@ -81,43 +82,47 @@ namespace QuanLyChamCong.Services
             string connect = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
             var attendanceList = new List<EmployeesModel>();
             string sql = @"
-                        SELECT 
-                        nv.id AS ma_nhan_vien,
-                        nv.ho_ten,
-                        nv.chuc_vu,
-                        nv.so_dien_thoai,
+                            SELECT 
+                                nv.id AS ma_nhan_vien,
+                                nv.ho_ten,
+                                nv.chuc_vu,
+                                nv.so_dien_thoai,
+    
+                                IFNULL(MAX(cl.loai_ca), 'Hiện không trong ca') AS loai_ca,
 
-                        IFNULL(MAX(cl.loai_ca), 'Hiện không trong ca') AS loai_ca,
+                                (
+                                    SELECT COUNT(*) 
+                                    FROM phan_cong_ca pcc2 
+                                    JOIN ca_lam cl2 ON pcc2.ca_id = cl2.id 
+                                    WHERE pcc2.nhan_vien_id = nv.id 
+                                      AND cl2.ngay_lam = @ngay_lam
+                                ) AS tong_so_ca_hom_nay,
 
-                        (
-                            SELECT COUNT(*) 
-                            FROM phan_cong_ca pcc2 
-                            JOIN ca_lam cl2 ON pcc2.ca_id = cl2.id 
-                            WHERE pcc2.nhan_vien_id = nv.id 
-                              AND cl2.ngay_lam = @ngay_lam
-                        ) AS tong_so_ca_hom_nay,
+                                MAX(IFNULL(cc.trang_thai, '')) AS trang_thai
 
-                        MAX(IFNULL(cc.trang_thai, '')) AS trang_thai
+                            FROM nhan_vien AS nv
 
-                    FROM nhan_vien AS nv
+                            -- 1. Các lệnh JOIN phải được thực hiện trước
+                            INNER JOIN tai_khoan tk ON tk.id = nv.tai_khoan_id 
+                                AND tk.trang_thai = 'active' -- 🔥 Chỉ lấy nhân viên có tài khoản ACTIVE
 
-                    -- 🔥 Chỉ lấy nhân viên có tài khoản ACTIVE
-                    INNER JOIN tai_khoan tk ON tk.id = nv.tai_khoan_id
-                        AND tk.trang_thai = 'active'
+                            LEFT JOIN phan_cong_ca AS pcc 
+                                   ON nv.id = pcc.nhan_vien_id
 
-                    LEFT JOIN phan_cong_ca AS pcc 
-                           ON nv.id = pcc.nhan_vien_id
+                            LEFT JOIN ca_lam AS cl 
+                                   ON pcc.ca_id = cl.id 
+                                  AND cl.ngay_lam = @ngay_lam
 
-                    LEFT JOIN ca_lam AS cl 
-                           ON pcc.ca_id = cl.id
-                          AND cl.ngay_lam = @ngay_lam
+                            LEFT JOIN cham_cong AS cc 
+                                   ON cc.nhan_vien_id = nv.id 
+                                  AND cc.ca_id = cl.id
 
-                    LEFT JOIN cham_cong AS cc 
-                           ON cc.nhan_vien_id = nv.id 
-                          AND cc.ca_id = cl.id
+                            -- 2. Mệnh đề WHERE chuyển xuống đây
+                            WHERE nv.doanh_nghiep_id = @DoanhNghiepID
 
-                    GROUP BY 
-                        nv.id, nv.ho_ten, nv.chuc_vu;
+                            -- 3. Cuối cùng là GROUP BY
+                            GROUP BY 
+                                nv.id, nv.ho_ten, nv.chuc_vu;
             ";
             using (var conn = new MySqlConnection(connect))
             {
@@ -125,7 +130,7 @@ namespace QuanLyChamCong.Services
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@ngay_lam", date.Date);
-
+                    cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
@@ -199,7 +204,7 @@ namespace QuanLyChamCong.Services
             }
             return text;
         }
-        public async Task<bool> ThemNhanVienVaTaiKhoan(nhan_vien employee, int doanhNghiepId)
+        public async Task<bool> ThemNhanVienVaTaiKhoan(nhan_vien employee)
         {
             if (employee == null) return false;
 
@@ -229,7 +234,7 @@ namespace QuanLyChamCong.Services
 
                         using (var cmdTK = new MySqlCommand(queryTaiKhoan, conn, transaction))
                         {
-                            cmdTK.Parameters.AddWithValue("@DoanhNghiepId", doanhNghiepId);
+                            cmdTK.Parameters.AddWithValue("@DoanhNghiepId", DoanhNghiep.CurrentID);
                             cmdTK.Parameters.AddWithValue("@TrangThai", "active");
                             cmdTK.Parameters.AddWithValue("@SoDienThoai", employee.so_dien_thoai);
                             cmdTK.Parameters.AddWithValue("@MatKhau", generatedPassword);
@@ -244,7 +249,7 @@ namespace QuanLyChamCong.Services
                         // --- BƯỚC 2: INSERT NHÂN VIÊN (KÈM TAI_KHOAN_ID) ---
                         using (var cmdNV = new MySqlCommand(queryNhanVien, conn, transaction))
                         {
-                            cmdNV.Parameters.AddWithValue("@DoanhNghiepId", doanhNghiepId);
+                            cmdNV.Parameters.AddWithValue("@DoanhNghiepId", DoanhNghiep.CurrentID);
                             cmdNV.Parameters.AddWithValue("@HoTen", employee.ho_ten);
                             cmdNV.Parameters.AddWithValue("@SoDienThoai", employee.so_dien_thoai);
                             cmdNV.Parameters.AddWithValue("@ChucVu", employee.chuc_vu);

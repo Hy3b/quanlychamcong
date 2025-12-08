@@ -109,10 +109,11 @@
                 </RadioButton>
 
 
-                <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
+                <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}"
+                             Command= "{Binding ShowCaLamCommand}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
-                        <TextBlock Text="Lịch làm" VerticalAlignment="Center"/>
+                        <TextBlock Text="Ca làm" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>

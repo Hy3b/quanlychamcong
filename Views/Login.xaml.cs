@@ -3,7 +3,7 @@ using System;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input; // <-- Thêm dòng này
-
+using QuanLyChamCong.Helpers;
 namespace QuanLyChamCong.Views
 {
     public partial class Login : Window
@@ -35,10 +35,10 @@ namespace QuanLyChamCong.Views
 
                     // ✅ Câu truy vấn kiểm tra tài khoản
                     string query = @"
-                                    SELECT dn.ten_doanh_nghiep
+                                    SELECT dn.ten_doanh_nghiep, dn.id
                                     FROM tai_khoan tk
                                     JOIN doanh_nghiep dn ON tk.id = dn.tai_khoan_chu_so_huu
-                                    WHERE tk.so_dien_thoai = @user AND tk.mat_khau_hash = @pass AND (tk.vai_tro = 'owner' OR tk.vai_tro = 'admin')";
+                                    WHERE tk.so_dien_thoai = @user AND tk.mat_khau_hash = @pass AND tk.vai_tro = 'owner';";
                     string doanhNghiepTen = "";
                     using (MySqlCommand command = new MySqlCommand(query, con))
                     {
@@ -52,6 +52,7 @@ namespace QuanLyChamCong.Views
                             {
                                 
                                 MessageBox.Show("Đăng nhập thành công!", "Welcome");
+                                DoanhNghiep.CurrentID = reader.GetInt32("id");
                                 // đóng login
                                 // 👉 Chuyển sang cửa sổ chính (ví dụ HomeWindow)
                                 // HomeWindow home = new HomeWindow();

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using QuanLyChamCong.Models;
 using QuanLyChamCong.Services;
-
+using QuanLyChamCong.ViewModels;
 namespace QuanLyChamCong.Views
 {
     public partial class EditEmployeeWindow : Window

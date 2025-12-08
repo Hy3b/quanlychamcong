@@ -60,7 +60,7 @@ namespace QuanLyChamCong.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/QuanLyChamCong;component/views/forgotpassword.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/QuanLyChamCong;V1.0.0.0;component/views/forgotpassword.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ForgotPassword.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
