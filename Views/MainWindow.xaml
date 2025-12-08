@@ -9,7 +9,7 @@
         Title="TRANG CHỦ QUẢN LÝ" Height="800" Width="1300"
         WindowStartupLocation="CenterScreen">
     
-
+    
     
     <Window.Resources>
 
@@ -101,7 +101,8 @@
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}">
+                <RadioButton GroupName="NavMenu" Style="{StaticResource NavRadioButtonStyle}"
+                             Command="{Binding ShowSalaryCommand}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE9F9;" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
                         <TextBlock Text="Lương thưởng" VerticalAlignment="Center"/>

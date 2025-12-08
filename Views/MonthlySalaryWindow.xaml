@@ -1,0 +1,91 @@
+﻿<Window x:Class="QuanLyChamCong.Views.MonthlySalaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lịch sử Lương Hàng Tháng" Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#F5F7FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1e3a8a" Padding="20">
+            <TextBlock Text="BẢNG LƯƠNG TỔNG HỢP HÀNG THÁNG" Foreground="White" 
+                       FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </Border>
+
+        <Border Grid.Row="1" Background="White" Margin="20,20,20,0" Padding="15" CornerRadius="8">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Thời gian:" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,10,0"/>
+
+                <TextBlock Text="Tháng" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox ItemsSource="{Binding ListMonths}" 
+              SelectedItem="{Binding SelectedMonthInt}"
+              Width="60" Height="30" 
+              VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+              Margin="0,0,15,0"/>
+
+                <TextBlock Text="Năm" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox ItemsSource="{Binding ListYears}" 
+              SelectedItem="{Binding SelectedYearInt}"
+              Width="80" Height="30" 
+              VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <DataGrid Grid.Row="2" Margin="20"
+                  ItemsSource="{Binding MonthlyList}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  RowHeight="35"
+                  AlternationCount="2"
+                  BorderThickness="1"
+                  BorderBrush="#E5E7EB">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID NV" Binding="{Binding NhanVienId}" Width="70"/>
+                <DataGridTextColumn Header="Họ Tên" Binding="{Binding HoTen}" Width="180" FontWeight="SemiBold"/>
+
+                <DataGridTextColumn Header="Lương CB" Binding="{Binding TongLuongCoBan, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Phụ Cấp" Binding="{Binding TongPhuCap, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tăng Ca" Binding="{Binding TongTangCa, StringFormat=N0}" Width="*"/>
+
+                <DataGridTextColumn Header="Bảo Hiểm" Binding="{Binding TongTruBaoHiem, StringFormat=N0}" Foreground="#DC2626" Width="*"/>
+                <DataGridTextColumn Header="Thuế" Binding="{Binding TongTruThue, StringFormat=N0}" Foreground="#DC2626" Width="*"/>
+
+                <DataGridTextColumn Header="THỰC LĨNH" Binding="{Binding ThucLinhThang, StringFormat=N0}" 
+                                    FontWeight="Bold" Foreground="#059669" FontSize="13" Width="*"/>
+
+                <DataGridTextColumn Header="Ngày chốt" Binding="{Binding NgayChotLuong}" Width="140" Foreground="Gray"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="3" Background="White" Padding="20" BorderBrush="#E5E7EB" BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock Text="Đơn vị tính: VNĐ" VerticalAlignment="Center" FontStyle="Italic" Foreground="Gray"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="TỔNG CỘNG THỰC LĨNH:" 
+                               VerticalAlignment="Center" 
+                               FontWeight="Bold" 
+                               Foreground="#374151" 
+                               FontSize="16"
+                               Margin="0,0,15,0"/>
+
+                    <Border Background="#ECFDF5" CornerRadius="5" Padding="15,5">
+                        <TextBlock Text="{Binding TongThucLinhToanBo, StringFormat={}{0:N0}}" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" 
+                                   Foreground="#059669" 
+                                   FontSize="22"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

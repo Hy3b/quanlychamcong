@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace QuanLyChamCong.Models
 {
+    public class DashboardModel
+    {
 
+    }
     public class WeeklyAttendanceStat
     {
         public string WeekRange { get; set; }

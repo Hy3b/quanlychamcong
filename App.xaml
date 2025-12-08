@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type vm:AttendanceViewModel}">
             <v:AttendanceView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SalaryDayViewModel}">
+            <v:SalaryForm/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:CaLamViewModel}">
             <v:CaLamView/>
         </DataTemplate>

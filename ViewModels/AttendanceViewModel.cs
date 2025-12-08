@@ -54,8 +54,8 @@ namespace QuanLyChamCong.ViewModels
             {
                 // 3. Nếu có ngày hợp lệ, tiến hành tải dữ liệu
                 // Vì value là nullable nên cần .Value để lấy DateTime thực
-                LoadData();
-            }
+            LoadData();
+        }
         }
         public void LoadData()
         {

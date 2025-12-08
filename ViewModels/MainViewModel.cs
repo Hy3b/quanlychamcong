@@ -19,17 +19,17 @@ namespace QuanLyChamCong.ViewModels
         private readonly DashboardViewModel _dashboardViewModel;
         private readonly EmployeesViewModel _employeesViewModel;
         private readonly AttendanceViewModel _attendanceViewModel;
+        private readonly SalaryDayViewModel _salaryDayViewModel;
         private readonly CaLamViewModel _caLamViewModel;
         // 2. Một property để lưu ViewModel *hiện tại* đang được hiển thị
         // [ObservableProperty] sẽ tự động tạo 1 property tên là CurrentViewModel
         [ObservableProperty]
-        private object _currentViewModel;
+        public object _currentViewModel;
 
         // 3. Các "Lệnh" (Command) mà các nút trong View có thể gọi
         public IRelayCommand ShowDashboardCommand { get; }
         public IRelayCommand ShowEmployeesCommand { get; }
-
-
+        public IRelayCommand ShowSalaryCommand { get; }
         public IRelayCommand ShowAttendanceCommand { get; }
         public IRelayCommand ShowCaLamCommand { get; }
         // ... Thêm các Command khác cho Reports, Settings...
@@ -41,12 +41,17 @@ namespace QuanLyChamCong.ViewModels
             _employeesViewModel = new EmployeesViewModel();
             _attendanceViewModel = new AttendanceViewModel();
             _caLamViewModel = new CaLamViewModel();
+            _salaryDayViewModel = new SalaryDayViewModel();
             // Khởi tạo các Lệnh
             ShowDashboardCommand = new RelayCommand(ExecuteShowDashboard);
             ShowEmployeesCommand = new RelayCommand(ExecuteShowEmployees);
             ShowAttendanceCommand = new RelayCommand(ExecuteShowAttendance);
             ShowCaLamCommand = new RelayCommand(ExecuteShowCaLam);
+            ShowSalaryCommand = new RelayCommand(ExecuteShowSalary);
 
+            // ...
+
+            // 4. Thiết lập trang mặc định khi mở ứng dụng
             CurrentViewModel = _dashboardViewModel;
         }
 
@@ -67,6 +72,12 @@ namespace QuanLyChamCong.ViewModels
         private void ExecuteShowCaLam()
         {
             CurrentViewModel = _caLamViewModel;
+        }
+
+        private void ExecuteShowSalary()
+        {
+            CurrentViewModel = _caLamViewModel;
+            CurrentViewModel = new SalaryDayViewModel();
         }
     }
 }

@@ -20,15 +20,15 @@ namespace QuanLyChamCong.Services
             List<DaylyAttendanceStat> rawData = new List<DaylyAttendanceStat>();
             string connect = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
             string query = @"
-                            SELECT 
-                                cl.ngay_lam,
-                                SUM(CASE WHEN cc.trang_thai = 'checked_in' THEN 1 ELSE 0 END) AS dung_gio,
-                                SUM(CASE WHEN cc.trang_thai = 'late' THEN 1 ELSE 0 END) AS di_muon,
-                                SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS vang
-                            FROM cham_cong cc
-                            JOIN ca_lam cl ON cc.ca_id = cl.id
+                    SELECT 
+                        cl.ngay_lam,
+                        SUM(CASE WHEN cc.trang_thai = 'checked_in' THEN 1 ELSE 0 END) AS dung_gio,
+                        SUM(CASE WHEN cc.trang_thai = 'late' THEN 1 ELSE 0 END) AS di_muon,
+                        SUM(CASE WHEN cc.trang_thai = 'absent' THEN 1 ELSE 0 END) AS vang
+                    FROM cham_cong cc
+                    JOIN ca_lam cl ON cc.ca_id = cl.id
                             JOIN nhan_vien nv ON nv.id = cc.nhan_vien_id    -- 🔥 JOIN thêm để lọc DN
-                            WHERE cl.ngay_lam BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
+                    WHERE cl.ngay_lam BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
                               AND nv.doanh_nghiep_id = @DoanhNghiepID      -- 🔥 Điều kiện DN
                             GROUP BY cl.ngay_lam;";
             // Lưu ý: Tôi bỏ cột 'thu_trong_tuan' trong SQL để xử lý đồng bộ ở C# cho dễ
