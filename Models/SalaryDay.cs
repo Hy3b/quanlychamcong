@@ -16,5 +16,6 @@ namespace QuanLyChamCong.Models
         public decimal TruThue { get; set; } // Trừ thuế
         public decimal ThucLinhNgay { get; set; } // Thực lĩnh ngày
         public string TrangThai { get; set; } // Trạng thái
+        public decimal PhutTangCa { get; set; } // phút 
     }
 }

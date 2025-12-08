@@ -62,14 +62,20 @@ namespace QuanLyChamCong.Services
 
                     string query = @"
                         SELECT 
-                            luong_ngay.*, 
-                            nhan_vien.ho_ten 
-                        FROM luong_ngay
-                        JOIN nhan_vien ON luong_ngay.nhan_vien_id = nhan_vien.id
+                            ln.*, 
+                            nv.ho_ten,
+                            cc.phut_tang_ca
+                        FROM luong_ngay ln
+                        JOIN nhan_vien nv ON ln.nhan_vien_id = nv.id
+                        
+                        -- LEFT JOIN để nếu quên chấm công vẫn hiện bảng lương (nhưng phút = 0)
+                        LEFT JOIN cham_cong cc ON ln.nhan_vien_id = cc.nhan_vien_id 
+                                               AND DATE(cc.gio_vao) = DATE(ln.ngay_tinh_luong)
+
                         WHERE (@key IS NULL OR @key = '' 
-                               OR nhan_vien.ho_ten LIKE @search 
-                               OR luong_ngay.nhan_vien_id LIKE @search)
-                          AND (@date IS NULL OR DATE(luong_ngay.ngay_tinh_luong) = DATE(@date))";
+                               OR nv.ho_ten LIKE @search 
+                               OR ln.nhan_vien_id LIKE @search)
+                          AND (@date IS NULL OR DATE(ln.ngay_tinh_luong) = DATE(@date))";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -92,8 +98,12 @@ namespace QuanLyChamCong.Services
                                 if (reader["phu_cap"] != DBNull.Value)
                                     emp.PhuCap = Convert.ToDecimal(reader["phu_cap"]);
 
-                                if (reader["luong_tang_ca"] != DBNull.Value)
-                                    emp.LuongTangCa = Convert.ToDecimal(reader["luong_tang_ca"]);
+                                if (reader["phut_tang_ca"] != DBNull.Value)
+                                {
+                                    decimal phut = Convert.ToDecimal(reader["phut_tang_ca"]);
+                                    emp.PhutTangCa = phut;       // <--- Gán vào đây
+                                    emp.LuongTangCa = phut * 200;
+                                }
 
                                 if (reader["tru_thue"] != DBNull.Value)
                                     emp.TruThue = Convert.ToDecimal(reader["tru_thue"]);
