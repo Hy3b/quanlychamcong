@@ -64,6 +64,11 @@ namespace QuanLyChamCong.ViewModels
 
         public IRelayCommand EditSalaryCommand { get; }
         public IRelayCommand ShowHistoryCommand { get; }
+        [RelayCommand]
+        public void Refresh()
+        {
+            LoadDataFromMySQL();
+        }
         public SalaryDayViewModel()
         {
             _salaryService = new SalaryDayService(); 

@@ -26,7 +26,7 @@ namespace QuanLyChamCong.Services
                                      SET phu_cap = @phuCap, 
                                          luong_tang_ca = @tangCa,
                                          tru_thue = @thue,
-                                         thuc_linh_ngay = ( @phuCap*500 + @tangCa) - @thue
+                                         thuc_linh_ngay = ( @phuCap + @tangCa) - @thue
                                      WHERE nhan_vien_id = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -61,21 +61,20 @@ namespace QuanLyChamCong.Services
                     await conn.OpenAsync();
 
                     string query = @"
-                        SELECT 
-                            ln.*, 
-                            nv.ho_ten,
-                            cc.phut_tang_ca
-                        FROM luong_ngay ln
-                        JOIN nhan_vien nv ON ln.nhan_vien_id = nv.id
-                        
-                        -- LEFT JOIN để nếu quên chấm công vẫn hiện bảng lương (nhưng phút = 0)
-                        LEFT JOIN cham_cong cc ON ln.nhan_vien_id = cc.nhan_vien_id 
-                                               AND DATE(cc.gio_vao) = DATE(ln.ngay_tinh_luong)
+                                SELECT 
+                                    ln.*, 
+                                    nv.ho_ten,
+                                    cc.phut_tang_ca
+                                FROM luong_ngay ln
+                                JOIN nhan_vien nv ON ln.nhan_vien_id = nv.id
 
-                        WHERE (@key IS NULL OR @key = '' 
-                               OR nv.ho_ten LIKE @search 
-                               OR ln.nhan_vien_id LIKE @search)
-                          AND (@date IS NULL OR DATE(ln.ngay_tinh_luong) = DATE(@date))";
+                                LEFT JOIN cham_cong cc ON ln.cham_cong_id = cc.id 
+
+                                WHERE 
+                                    (@key IS NULL OR @key = '' 
+                                        OR nv.ho_ten LIKE @search 
+                                        OR ln.nhan_vien_id LIKE @search)
+                                    AND (@date IS NULL OR DATE(ln.ngay_tinh_luong) = DATE(@date))";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {

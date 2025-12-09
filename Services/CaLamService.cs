@@ -183,7 +183,7 @@ namespace QuanLyChamCong.Services
                     catch (Exception ex)
                     {
                         await trans.RollbackAsync();
-                        // Console.WriteLine("Lỗi xóa ca: " + ex.Message);
+                       
                         return false;
                     }
                 }
@@ -192,4 +192,4 @@ namespace QuanLyChamCong.Services
     }
 }
 
-                // Bắt đầu Transaction
+                

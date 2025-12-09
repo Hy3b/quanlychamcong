@@ -87,7 +87,11 @@ namespace QuanLyChamCong.ViewModels
         [RelayCommand]
         private async Task DeleteEmployee(EmployeesModel employee)
         {
-            if (employee == null) return;
+            if (employee == null)
+            {
+                MessageBox.Show("Vui lòng chọn một nhân viên để xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             // Hỏi xác nhận
             var result = MessageBox.Show($"Bạn có chắc muốn xóa nhân viên {employee.EmployeeID} có tên là {employee.Name} ?",
@@ -121,7 +125,11 @@ namespace QuanLyChamCong.ViewModels
         [RelayCommand]
         private async Task EditEmployee(EmployeesModel employee)
         {
-            if (employee == null) return;
+            if (employee == null) {
+                MessageBox.Show("Vui lòng chọn một nhân viên để sửa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
 
             // Tạo một cửa sổ mới (Form Sửa) và truyền nhân viên vào
             // (Giả sử bạn đã tạo file EditEmployeeWindow.xaml)

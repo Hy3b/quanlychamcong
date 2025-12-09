@@ -27,17 +27,21 @@ namespace QuanLyChamCong.Services
             if (IDTimca.HasValue)
             {
                 query = @"SELECT nv.id, nv.ho_ten
-                  FROM nhan_vien nv
-                  JOIN phan_cong_ca pcc ON pcc.nhan_vien_id = nv.id
-                  WHERE nv.doanh_nghiep_id = @DoanhNghiepId
-                    AND pcc.ca_id = @IDTimca";
+                          FROM nhan_vien nv
+                          JOIN phan_cong_ca pcc ON pcc.nhan_vien_id = nv.id
+                          JOIN tai_khoan tk ON tk.id = nv.tai_khoan_id
+                          WHERE nv.doanh_nghiep_id = @DoanhNghiepId
+                            AND pcc.ca_id = @IDTimca
+                            AND tk.trang_thai = 'active'";
             }
             // TRƯỜNG HỢP 2: Lấy tất cả nhân viên của doanh nghiệp (Không quan tâm ca)
             else
             {
-                query = @"SELECT id, ho_ten
-                  FROM nhan_vien
-                  WHERE doanh_nghiep_id = @DoanhNghiepId";
+                query = @"SELECT nv.id, nv.ho_ten
+                          FROM nhan_vien nv
+                          JOIN tai_khoan tk ON tk.id = nv.tai_khoan_id
+                          WHERE nv.doanh_nghiep_id = @DoanhNghiepId
+                AND tk.trang_thai = 'active'";
             }
             using (var conn = new MySqlConnection(_connectionString))
             {

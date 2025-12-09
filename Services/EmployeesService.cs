@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuanLyChamCong.Models;
+using System.Security.Cryptography; // ✅ Thêm thư viện bảo mật
+using System.Text;
 namespace QuanLyChamCong.Services
 {
     public class EmployeesService
@@ -205,12 +207,26 @@ namespace QuanLyChamCong.Services
             }
             return text;
         }
+        public static string ComputeSha256Hash(string rawData)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
         public async Task<bool> ThemNhanVienVaTaiKhoan(nhan_vien employee)
         {
             if (employee == null) return false;
 
             // LƯU Ý QUAN TRỌNG:
             // Câu lệnh 1: Thêm tài khoản VÀ gọi SELECT LAST_INSERT_ID() ngay lập tức để lấy ID vừa sinh ra.
+
             string queryTaiKhoan = @"INSERT INTO tai_khoan (doanh_nghiep_id, so_dien_thoai, mat_khau_hash, vai_tro, trang_thai) 
                              VALUES (@DoanhNghiepId, @SoDienThoai, @MatKhau, @VaiTro, @TrangThai);
                              SELECT LAST_INSERT_ID();";
@@ -232,13 +248,13 @@ namespace QuanLyChamCong.Services
                         // --- BƯỚC 1: INSERT TÀI KHOẢN TRƯỚC ---
                         string  TenKhongDau = RemoveVietnameseAccents(employee.ho_ten).Replace(" ", "");
                         string generatedPassword = TenKhongDau + employee.so_dien_thoai;
-
+                        string passwordHash = ComputeSha256Hash(generatedPassword);
                         using (var cmdTK = new MySqlCommand(queryTaiKhoan, conn, transaction))
                         {
                             cmdTK.Parameters.AddWithValue("@DoanhNghiepId", DoanhNghiep.CurrentID);
                             cmdTK.Parameters.AddWithValue("@TrangThai", "active");
                             cmdTK.Parameters.AddWithValue("@SoDienThoai", employee.so_dien_thoai);
-                            cmdTK.Parameters.AddWithValue("@MatKhau", generatedPassword);
+                            cmdTK.Parameters.AddWithValue("@MatKhau", passwordHash);
                             cmdTK.Parameters.AddWithValue("@VaiTro", "employee");
 
                             // ExecuteScalarAsync dùng để lấy giá trị cột đầu tiên của dòng đầu tiên (chính là ID vừa tạo)

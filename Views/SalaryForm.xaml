@@ -56,24 +56,23 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="252"/>
+                    <ColumnDefinition Width="Auto" MinWidth="332.103"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="35">
                     <TextBlock Text="Chọn ngày:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="SemiBold"/>
                     <DatePicker SelectedDate="{Binding SelectedDate}" Width="120" Height="35" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
-                <TextBox Grid.Column="2" 
+                <TextBox Grid.Column="1" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                          Tag="Tìm theo tên hoặc ID..."
-                         Height="35"
                          VerticalContentAlignment="Center" 
                          Padding="10,0"
-                         Margin="0,0,15,0"
-                         BorderBrush="#DDD" BorderThickness="1">
+                         Margin="30,0,150,0"
+                         BorderBrush="#DDD" BorderThickness="1" Grid.ColumnSpan="2">
                     <TextBox.Style>
                         <Style TargetType="TextBox">
                             <Setter Property="Template">
@@ -108,13 +107,17 @@
                     <Button Content="Lương hàng tháng" 
                             Command="{Binding ShowHistoryCommand}"
                             Background="#FF9800" Foreground="White"
-                            Height="35" Margin="0,0,10,0"/>
-
+                            Height="35" Margin="0,0,10,0" Width="115"/>
                     <Button Content="Chỉnh sửa lương" 
                             Command="{Binding EditSalaryCommand}"
                             Background="#2196F3" Foreground="White"
-                            Height="35"/>
+                            Height="35" Width="115" Margin="0,0,10,0"/>
+                    <Button Content="Làm mới" 
+                            Command="{Binding RefreshCommand}"
+                            Background="#2196F3" Foreground="White"
+                            Height="35" Width="115" Margin="0,0,10,0"/>
                 </StackPanel>
+
             </Grid>
         </Border>
 

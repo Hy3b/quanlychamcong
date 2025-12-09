@@ -3,6 +3,8 @@ using System;
 using System.Configuration;
 using System.Windows;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography; // ✅ Thêm thư viện bảo mật
+using System.Text;                  // ✅ Thêm thư viện xử lý chuỗi
 
 namespace QuanLyChamCong.Views
 {
@@ -11,6 +13,21 @@ namespace QuanLyChamCong.Views
         public SignUp()
         {
             InitializeComponent();
+        }
+
+        // ✅ Hàm hỗ trợ mã hóa SHA-256 (Phải giống hệt bên Login)
+        public static string ComputeSha256Hash(string rawData)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         public bool KiemTraSoDienThoai(string sdt)
@@ -53,11 +70,14 @@ namespace QuanLyChamCong.Views
                 return;
             }
 
+            // ✅ MÃ HÓA MẬT KHẨU NGAY SAU KHI KIỂM TRA HỢP LỆ
+            string matKhauDaHash = ComputeSha256Hash(matKhau);
+
+
             // ======================================================
             // PHẦN 2: XỬ LÝ DATABASE (TRANSACTION)
             // ======================================================
 
-            // Đảm bảo bạn đã thêm Reference: System.Configuration
             string constr = ConfigurationManager.ConnectionStrings["ketloicuatoi"].ConnectionString;
 
             using (MySqlConnection conn = new MySqlConnection(constr))
@@ -87,18 +107,18 @@ namespace QuanLyChamCong.Views
 
                             // ---------------------------------------------------------
                             // BƯỚC 2: INSERT TÀI KHOẢN
-                            // Lưu ý: Đã xóa dòng tham số @vaiTro bị thừa
                             // ---------------------------------------------------------
                             string insertTK = @"INSERT INTO tai_khoan 
-                                              (doanh_nghiep_id, so_dien_thoai, mat_khau_hash, vai_tro, trang_thai)
-                                              VALUES (@dnId, @soDT, @mk, 'owner', 'active')";
+                                                (doanh_nghiep_id, so_dien_thoai, mat_khau_hash, vai_tro, trang_thai)
+                                                VALUES (@dnId, @soDT, @mk, 'owner', 'active')";
 
                             using (MySqlCommand cmd = new MySqlCommand(insertTK, conn, transaction))
                             {
                                 cmd.Parameters.AddWithValue("@dnId", doanhNghiepId);
                                 cmd.Parameters.AddWithValue("@soDT", soDienThoai);
-                                cmd.Parameters.AddWithValue("@mk", matKhau); // Nên mã hóa password ở đây
-                                                                             // Không cần @vaiTro vì trong SQL đã ghi cứng là 'owner'
+
+                                // ✅ Dùng mật khẩu đã Hash để lưu vào DB
+                                cmd.Parameters.AddWithValue("@mk", matKhauDaHash);
 
                                 cmd.ExecuteNonQuery();
                                 taiKhoanId = cmd.LastInsertedId;
