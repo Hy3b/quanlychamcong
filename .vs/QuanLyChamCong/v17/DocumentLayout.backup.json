@@ -3,12 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\quanlychamcong.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:quanlychamcong.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -251,10 +258,6 @@
       "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:helpers\\doanhnghiep.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|c:\\users\\admin\\source\\repos\\quanlychamcong\\views\\forgotpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A4D07735-2867-4654-B53B-BB55658C5510}|QuanLyChamCong.csproj|solutionrelative:views\\forgotpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -301,43 +304,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "QuanLyChamCong",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj",
-              "RelativeDocumentMoniker": "QuanLyChamCong.csproj",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj",
-              "RelativeToolTip": "QuanLyChamCong.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-09T15:04:07.59Z",
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAP4UAAAAAAAAAAAqwAkVAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-12-09T16:39:43.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CaLamService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\CaLamService.cs",
-              "RelativeDocumentMoniker": "Services\\CaLamService.cs",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\CaLamService.cs",
-              "RelativeToolTip": "Services\\CaLamService.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAYwKkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T05:45:30.378Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SalaryDayService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\SalaryDayService.cs",
-              "RelativeDocumentMoniker": "Services\\SalaryDayService.cs",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\SalaryDayService.cs",
-              "RelativeToolTip": "Services\\SalaryDayService.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAgwFEAAABdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T21:12:48.591Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -349,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "AttendanceHistoryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\AttendanceHistoryViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AttendanceHistoryViewModel.cs",
@@ -361,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "EditEmployeeViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\EditEmployeeViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\EditEmployeeViewModel.cs",
@@ -373,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "EmployeesViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\EmployeesViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\EmployeesViewModel.cs",
@@ -385,7 +364,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "QuanLyChamCong.csproj",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj",
               "RelativeDocumentMoniker": "QuanLyChamCong.csproj",
@@ -398,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
@@ -406,24 +385,22 @@
               "RelativeToolTip": "ViewModels\\MainViewModel.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwBwAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T19:57:21.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-15T19:57:21.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Views\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml",
               "RelativeToolTip": "Views\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-17T10:27:36.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-17T10:27:36.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "DashboardView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\DashboardView.xaml",
               "RelativeDocumentMoniker": "Views\\DashboardView.xaml",
@@ -434,7 +411,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
+              "Title": "QuanLyChamCong",
+              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj",
+              "RelativeDocumentMoniker": "QuanLyChamCong.csproj",
+              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj",
+              "RelativeToolTip": "QuanLyChamCong.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-09T15:04:07.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T18:47:48.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SalaryDayService.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\SalaryDayService.cs",
+              "RelativeDocumentMoniker": "Services\\SalaryDayService.cs",
+              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\SalaryDayService.cs",
+              "RelativeToolTip": "Services\\SalaryDayService.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwFEAAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T21:12:48.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CaLamService.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\CaLamService.cs",
+              "RelativeDocumentMoniker": "Services\\CaLamService.cs",
+              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\CaLamService.cs",
+              "RelativeToolTip": "Services\\CaLamService.cs",
+              "ViewState": "AgIAALQAAAAAAAAAAAAYwKkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T05:45:30.378Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "DashboardService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\DashboardService.cs",
               "RelativeDocumentMoniker": "Services\\DashboardService.cs",
@@ -446,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "DashboardViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\DashboardViewModel.cs",
@@ -458,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "EmployeesService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\EmployeesService.cs",
               "RelativeDocumentMoniker": "Services\\EmployeesService.cs",
@@ -470,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "CaLamViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\CaLamViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\CaLamViewModel.cs",
@@ -482,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "AttendanceHistoryView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AttendanceHistoryView.xaml",
               "RelativeDocumentMoniker": "Views\\AttendanceHistoryView.xaml",
@@ -493,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "SalaryDayViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\SalaryDayViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\SalaryDayViewModel.cs",
@@ -505,7 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "AddEmployeeViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\AddEmployeeViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AddEmployeeViewModel.cs",
@@ -517,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "AttendanceHistoryModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\AttendanceHistoryModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AttendanceHistoryModel.cs",
@@ -529,7 +554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "AttendanceViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\AttendanceViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AttendanceViewModel.cs",
@@ -541,7 +566,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "LoginVewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\LoginVewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\LoginVewModel.cs",
@@ -553,7 +578,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "AttendanceHistoryService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\AttendanceHistoryService.cs",
               "RelativeDocumentMoniker": "Services\\AttendanceHistoryService.cs",
@@ -565,7 +590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "NhanVienChonModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\NhanVienChonModel.cs",
               "RelativeDocumentMoniker": "Models\\NhanVienChonModel.cs",
@@ -577,7 +602,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "SalaryDay.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\SalaryDay.cs",
               "RelativeDocumentMoniker": "Models\\SalaryDay.cs",
@@ -589,7 +614,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "SignUp.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\SignUp.xaml.cs",
               "RelativeDocumentMoniker": "Views\\SignUp.xaml.cs",
@@ -601,7 +626,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "SignUp.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\SignUp.xaml",
               "RelativeDocumentMoniker": "Views\\SignUp.xaml",
@@ -612,7 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "EditSalaryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\EditSalaryViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\EditSalaryViewModel.cs",
@@ -624,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "ThemCaLamViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\ThemCaLamViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\ThemCaLamViewModel.cs",
@@ -636,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "EditSalaryWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\EditSalaryWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\EditSalaryWindow.xaml.cs",
@@ -648,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "EditEmployeeWindow.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\EditEmployeeWindow.xaml",
               "RelativeDocumentMoniker": "Views\\EditEmployeeWindow.xaml",
@@ -659,7 +684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "EditEmployeeWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\EditEmployeeWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\EditEmployeeWindow.xaml.cs",
@@ -671,7 +696,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "AddEmployeeView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AddEmployeeView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\AddEmployeeView.xaml.cs",
@@ -683,7 +708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "ThemCaLamService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\ThemCaLamService.cs",
               "RelativeDocumentMoniker": "Services\\ThemCaLamService.cs",
@@ -695,7 +720,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "Login.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\Login.xaml.cs",
               "RelativeDocumentMoniker": "Views\\Login.xaml.cs",
@@ -707,7 +732,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "LoginService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\LoginService.cs",
               "RelativeDocumentMoniker": "Services\\LoginService.cs",
@@ -719,7 +744,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "AddEmployeeView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AddEmployeeView.xaml",
               "RelativeDocumentMoniker": "Views\\AddEmployeeView.xaml",
@@ -730,7 +755,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "CaLamView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\CaLamView.xaml",
               "RelativeDocumentMoniker": "Views\\CaLamView.xaml",
@@ -741,7 +766,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "AttendanceView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AttendanceView.xaml",
               "RelativeDocumentMoniker": "Views\\AttendanceView.xaml",
@@ -752,7 +777,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "MonthlySalaryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\MonthlySalaryViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MonthlySalaryViewModel.cs",
@@ -764,7 +789,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "SalaryMonthService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\SalaryMonthService.cs",
               "RelativeDocumentMoniker": "Services\\SalaryMonthService.cs",
@@ -776,7 +801,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "AttendanceHistoryView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AttendanceHistoryView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\AttendanceHistoryView.xaml.cs",
@@ -788,7 +813,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "MonthlySalary.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\MonthlySalary.cs",
               "RelativeDocumentMoniker": "Models\\MonthlySalary.cs",
@@ -800,7 +825,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "Login.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\Login.xaml",
               "RelativeDocumentMoniker": "Views\\Login.xaml",
@@ -811,7 +836,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "SalaryForm.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\SalaryForm.xaml",
               "RelativeDocumentMoniker": "Views\\SalaryForm.xaml",
@@ -822,19 +847,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
               "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-15T18:53:34.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-15T18:53:34.27Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "cham_cong.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\cham_cong.cs",
               "RelativeDocumentMoniker": "Models\\cham_cong.cs",
@@ -846,7 +870,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "SuaCaLamViewModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\ViewModels\\SuaCaLamViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\SuaCaLamViewModel.cs",
@@ -858,7 +882,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "AttendanceService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Services\\AttendanceService.cs",
               "RelativeDocumentMoniker": "Services\\AttendanceService.cs",
@@ -870,7 +894,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 50,
               "Title": "ThemCaLamView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\ThemCaLamView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\ThemCaLamView.xaml.cs",
@@ -882,7 +906,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "ThemCaLamView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\ThemCaLamView.xaml",
               "RelativeDocumentMoniker": "Views\\ThemCaLamView.xaml",
@@ -893,7 +917,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -905,7 +929,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "QuanLyChamCong.csproj.user",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\QuanLyChamCong.csproj.user",
               "RelativeDocumentMoniker": "QuanLyChamCong.csproj.user",
@@ -917,7 +941,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "CaLamModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\CaLamModel.cs",
               "RelativeDocumentMoniker": "Models\\CaLamModel.cs",
@@ -929,7 +953,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "SuaCaLamView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\SuaCaLamView.xaml",
               "RelativeDocumentMoniker": "Views\\SuaCaLamView.xaml",
@@ -940,7 +964,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 57,
               "Title": "EmployeesView.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\EmployeesView.xaml",
               "RelativeDocumentMoniker": "Views\\EmployeesView.xaml",
@@ -951,7 +975,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 56,
               "Title": "SuaCaLamView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\SuaCaLamView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\SuaCaLamView.xaml.cs",
@@ -963,7 +987,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 58,
               "Title": "DashboardModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\DashboardModel.cs",
               "RelativeDocumentMoniker": "Models\\DashboardModel.cs",
@@ -975,7 +999,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 59,
               "Title": "EmployeesModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\EmployeesModel.cs",
               "RelativeDocumentMoniker": "Models\\EmployeesModel.cs",
@@ -987,7 +1011,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 60,
               "Title": "nhan_vien.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\nhan_vien.cs",
               "RelativeDocumentMoniker": "Models\\nhan_vien.cs",
@@ -999,7 +1023,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 61,
               "Title": "ForgotPassword.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\ForgotPassword.xaml.cs",
               "RelativeDocumentMoniker": "Views\\ForgotPassword.xaml.cs",
@@ -1011,7 +1035,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 62,
               "Title": "EmployeesView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\EmployeesView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\EmployeesView.xaml.cs",
@@ -1023,7 +1047,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 63,
               "Title": "DoanhNghiep.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Helpers\\DoanhNghiep.cs",
               "RelativeDocumentMoniker": "Helpers\\DoanhNghiep.cs",
@@ -1035,19 +1059,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Views\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T18:47:48.598Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "ForgotPassword.xaml",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\ForgotPassword.xaml",
               "RelativeDocumentMoniker": "Views\\ForgotPassword.xaml",
@@ -1058,7 +1070,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "AttendanceModel.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Models\\AttendanceModel.cs",
               "RelativeDocumentMoniker": "Models\\AttendanceModel.cs",
@@ -1070,7 +1082,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "AttendanceView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\AttendanceView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\AttendanceView.xaml.cs",
@@ -1082,7 +1094,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 67,
               "Title": "ChartUpdater.cs",
               "DocumentMoniker": "C:\\Users\\admin\\AppData\\Local\\Temp\\.vsdbgsrc\\322467f2f0ff3a5e25c957bc22f206f4ea97f7e0913122ec8a210a8849f21412\\ChartUpdater.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\322467f2f0ff3a5e25c957bc22f206f4ea97f7e0913122ec8a210a8849f21412\\ChartUpdater.cs",
@@ -1094,7 +1106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AssemblyInfo.cs",
@@ -1106,7 +1118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -1118,7 +1130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 71,
               "Title": "DashboardView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\QuanLyChamCong\\Views\\DashboardView.xaml.cs",
               "RelativeDocumentMoniker": "Views\\DashboardView.xaml.cs",
@@ -1130,7 +1142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 68,
               "Title": "Uno.UI.SourceGenerators.props",
               "DocumentMoniker": "C:\\Users\\admin\\.nuget\\packages\\uno.winui\\6.0.465\\buildTransitive\\Uno.UI.SourceGenerators.props",
               "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\uno.winui\\6.0.465\\buildTransitive\\Uno.UI.SourceGenerators.props",
