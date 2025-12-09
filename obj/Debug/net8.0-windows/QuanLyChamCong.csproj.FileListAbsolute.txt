@@ -78,3 +78,4 @@ C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\refint\QuanL
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\QuanLyChamCong.pdb
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\QuanLyChamCong.genruntimeconfig.cache
 C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\ref\QuanLyChamCong.dll
+C:\Users\admin\source\repos\QuanLyChamCong\obj\Debug\net8.0-windows\QuanLyChamCong_Content.g.cs

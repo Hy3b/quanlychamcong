@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QuanLyChamCong.Helpers;
 namespace QuanLyChamCong.Services
 {
     internal class SalaryDayService
@@ -59,29 +59,27 @@ namespace QuanLyChamCong.Services
                 try
                 {
                     await conn.OpenAsync();
-
                     string query = @"
-                                SELECT 
-                                    ln.*, 
-                                    nv.ho_ten,
-                                    cc.phut_tang_ca
-                                FROM luong_ngay ln
-                                JOIN nhan_vien nv ON ln.nhan_vien_id = nv.id
-
-                                LEFT JOIN cham_cong cc ON ln.cham_cong_id = cc.id 
-
-                                WHERE 
-                                    (@key IS NULL OR @key = '' 
-                                        OR nv.ho_ten LIKE @search 
-                                        OR ln.nhan_vien_id LIKE @search)
-                                    AND (@date IS NULL OR DATE(ln.ngay_tinh_luong) = DATE(@date))";
+                SELECT 
+                    ln.*, 
+                    nv.ho_ten,
+                    cc.phut_tang_ca
+                FROM luong_ngay ln
+                JOIN nhan_vien nv ON ln.nhan_vien_id = nv.id
+                LEFT JOIN cham_cong cc ON ln.cham_cong_id = cc.id 
+                WHERE 
+                    nv.doanh_nghiep_id = @DoanhNghiepID
+                    AND (@key IS NULL OR @key = '' 
+                            OR nv.ho_ten LIKE @search 
+                            OR ln.nhan_vien_id LIKE @search)
+                    AND (@date IS NULL OR DATE(ln.ngay_tinh_luong) = DATE(@date))";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@key", searchText);
                         cmd.Parameters.AddWithValue("@search", $"%{searchText}%");
                         cmd.Parameters.AddWithValue("@date", selectedDate);
-
+                        cmd.Parameters.AddWithValue("@DoanhNghiepID", DoanhNghiep.CurrentID);
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {
                             while (await reader.ReadAsync())

@@ -52,7 +52,7 @@ namespace QuanLyChamCong.ViewModels
                     Values = new ChartValues<int>(onTimeCounts),
                     Fill = new SolidColorBrush(Color.FromArgb(255, 46, 204, 113)),
                     Stroke = Brushes.Transparent
-                    
+
                 },
                 new ColumnSeries
                 {
@@ -60,7 +60,7 @@ namespace QuanLyChamCong.ViewModels
                     Values = new ChartValues<int>(lateCounts),
                     Fill = new SolidColorBrush(Color.FromArgb(255, 231, 76, 60)),
                     Stroke = Brushes.Transparent
-              
+
                 },
                 new ColumnSeries
                 {
@@ -68,7 +68,7 @@ namespace QuanLyChamCong.ViewModels
                     Values = new ChartValues<int>(absentCounts),
                     Fill = new SolidColorBrush(Color.FromArgb(255,255, 193,  7)),
                     Stroke = Brushes.Transparent
-             
+
                 }
             };
         }
@@ -84,8 +84,8 @@ namespace QuanLyChamCong.ViewModels
             var brushConverter = new BrushConverter();
 
             // 3. Khởi tạo SeriesCollection
-                ChamCongHomNay = new SeriesCollection
-            {
+            ChamCongHomNay = new SeriesCollection
+                {
                 new PieSeries
                 {
                     Title = "Đúng giờ",
@@ -107,11 +107,11 @@ namespace QuanLyChamCong.ViewModels
                     DataLabels = true,
                     Fill = (Brush)brushConverter.ConvertFrom("#95A5A6") // Màu Xám
                 }
-            };
+                };
 
             // Nếu bạn dùng MVVM, nhớ gọi OnPropertyChanged("AttendanceSeries") ở đây để giao diện cập nhật
             // Nếu dùng Code-Behind (MainWindow.xaml.cs), gán DataContext = this;
-            
+
         }
         public void LoadWeeklyAttendanceData()
         {
@@ -225,10 +225,10 @@ namespace QuanLyChamCong.ViewModels
             // Dữ liệu biểu đồ xu hướng chuyên cần hàng tuần
             // Định dạng trục Y
             PointLabel = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);// Định dạng nhãn điểm dữ liệu
-            //timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromMinutes(1); // 1 phút
-            //timer.Tick += Timer_Tick;
-            //timer.Start();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(20); // Đặt thời gian là 20 giây
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
     }
 }
